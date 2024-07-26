@@ -25,6 +25,18 @@ const Form = styled.form`
   width: 350px;
   background-color: #103d55;
   border-radius: 15px;
+  animation: appears 1s ease-in-out forwards;
+
+  @keyframes appears {
+    0% {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
 `;
 
 // tag h1
@@ -64,9 +76,11 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 1em;
   border-radius: 10px;
+  transition: .5s;
 
   &:hover {
     background: #1d5577;
+    transform: scale(1.05);
   }
 `;
 
