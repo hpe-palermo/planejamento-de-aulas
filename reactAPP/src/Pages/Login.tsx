@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
   body, html {
     margin: 0;
     padding: 0;
-    background-color: #053B50;
+    background-color: #042937;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -23,7 +23,7 @@ const Form = styled.form`
   align-items: center;
   height: 50vh;
   width: 350px;
-  background-color: #1b4f6b;
+  background-color: #103d55;
   border-radius: 15px;
 `;
 
@@ -55,7 +55,7 @@ const Input = styled.input`
 
 // button login
 const Button = styled.button`
-  background: #05304b;
+  background: #042937;
   width: 270px;
   border: none;
   color: white;
@@ -66,7 +66,7 @@ const Button = styled.button`
   border-radius: 10px;
 
   &:hover {
-    background: #17425d;
+    background: #1d5577;
   }
 `;
 
