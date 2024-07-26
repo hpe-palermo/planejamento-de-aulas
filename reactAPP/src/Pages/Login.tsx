@@ -29,7 +29,7 @@ const Form = styled.form`
   align-items: center;
   height: 50vh;
   width: 350px;
-  background-color: #245e7d;
+  background-color: #1b4f6b;
   border-radius: 15px;
 `;
 
@@ -61,7 +61,7 @@ const Input = styled.input`
 
 // button login
 const Button = styled.button`
-  background: #0f3c5a;
+  background: #05304b;
   width: 270px;
   border: none;
   color: white;
@@ -72,7 +72,7 @@ const Button = styled.button`
   border-radius: 10px;
 
   &:hover {
-    background: #0066CC;
+    background: #17425d;
   }
 `;
 
