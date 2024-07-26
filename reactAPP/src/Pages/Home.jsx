@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  body, html {
-    margin: 0;
-    padding: 0;
-    background-color: #042937;
-}
+    body, html {
+        margin: 0;
+        padding: 0;
+        background-color: #042937;
+    }
 `;
 
 const NavBar = styled.nav`
@@ -20,6 +20,11 @@ const NavBar = styled.nav`
 
 const NavBarBrand = styled.div`
     margin-left: 50px;
+
+    @media (max-width: 820px) {
+        position: relative;
+        left: 20px;
+    }
 `;
 
 const Container = styled.div`
@@ -30,13 +35,20 @@ const Container = styled.div`
 const SideBar = styled.div`
     background-color: #103d55;
     height: 100vh;
-    overflow-y: auto;
+    display: inline;
+
+    @media (max-width: 820px) {
+        display: none;
+    }
 `;
 
 const Content = styled.div`
     background-color: #5d97b9;
     height: 100vh;
-    overflow-y: auto;
+
+    @media (max-width: 820px) {
+        width: 100vw;
+    }
 `;
 
 const TitleSideBar = styled.h2`
@@ -46,7 +58,7 @@ const TitleSideBar = styled.h2`
 
 const ButtonAddDiscipline = styled.button`
     margin-left: 30px;
-    background: #042937;
+    background: #08662f;
     width: 270px;
     border: none;
     color: white;
@@ -58,27 +70,51 @@ const ButtonAddDiscipline = styled.button`
     transition: .5s;
 
     &:hover {
-        background: #1d5577;
+        background: #12743b;
         transform: scale(1.05);
     }
 `;
 
-const Discipline = styled.button`
+const ItemDiscipline = styled.div`
     margin-left: 30px;
     background: #042937;
-    width: 270px;
+    width: 200px;
     border: none;
     color: white;
     margin-bottom: 10px;
-    padding: 11px 32px;
+    padding: 15px 35px;
     cursor: pointer;
     font-size: 1em;
     border-radius: 10px;
-    transition: .5s;
+    text-align: center;
 
-    &:hover {
-        background: #1d5577;
-        transform: scale(1.05);
+    /* @media (min-width: 800px) {
+        margin-left: 30px;
+        background: #042937;
+        width: 200px;
+        border: none;
+        color: white;
+        margin-bottom: 10px;
+        padding: 15px 35px;
+        cursor: pointer;
+        font-size: 1em;
+        border-radius: 10px;
+        text-align: center;
+    } */
+`;
+
+const IconHamburguer = styled.button`
+    border: none;
+    outline: none;
+    background-color: #042937;
+    display: none;
+
+    @media (max-width: 820px) {
+        display: inline;
+        font-size: 40px;
+        position: fixed;
+        left: 12px;
+        top: 12px;
     }
 `;
 
@@ -89,10 +125,29 @@ const disciplines = {
 }
 
 function addDiscipline(){
-    alert("dsff")
+    // adicionar '4': 'Quimica'
 }
 
 function Home() {
+
+    const [appearsSideBar, setAppearsSideBar] = useState(false);
+    // const [classAppearsSideBar, setClassAppearsSideBar] = useState('.appears');
+    // const [classToggleSideBar, setClassToggleSideBar] = useState('.appears');
+
+    function toggle_sidebar() {
+        console.log(appearsSideBar)
+        
+        // if (appearsSideBar) {
+            // setClassAppearsSideBar('.hideen')
+            // setClassToggleSideBar('none')
+        // } else {
+            // setClassAppearsSideBar('.appears')
+            // setClassToggleSideBar('inline')
+        // }
+
+        setAppearsSideBar(!appearsSideBar)
+    }
+    
     return (
         <>
         <GlobalStyle/>
@@ -105,8 +160,16 @@ function Home() {
             <SideBar>
                 <TitleSideBar>Disciplinas</TitleSideBar>
                 <ButtonAddDiscipline onClick={addDiscipline}>Adicionar</ButtonAddDiscipline>
+                {Object.entries(disciplines).map(([id, name]) => (
+                        <ItemDiscipline className='item-disciline' key={id}>{name}</ItemDiscipline>
+                    ))}
             </SideBar>
-            <Content>Content</Content>
+            <Content>
+                Content
+                    <IconHamburguer onClick={toggle_sidebar}>
+                        <i class="bi bi-list"></i>
+                    </IconHamburguer>
+            </Content>
         </Container>
         </>
     )
