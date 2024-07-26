@@ -1,23 +1,17 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
-// Estilos globais
 const GlobalStyle = createGlobalStyle`
   body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
-}
-`;
-
-// Page login
-const Page = styled.div`
     background-color: #053B50;
     height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+}
 `;
 
 // sectioin login
@@ -89,25 +83,26 @@ function Login() {
     return (
         <>
             <GlobalStyle />
-            <Page>
-                <Form action='#' method='post'>
-                    <TitleH1>
-                        <h1>Login</h1>
-                    </TitleH1>
-                    <SectionData>
-                        <Label>Email:</Label>
-                        <Input type="text" placeholder="Email" />
-                    </SectionData>
-                    <SectionData>
-                        <Label>Senha:</Label>
-                        <Input type="text" placeholder="Senha" />
-                    </SectionData>
-                    <Button>Login</Button>
-                    <Link href='#'>Esqueceu a senha?</Link>
-                    <Link href='#'>Criar uma conta</Link>
+            <Form action='#' method='post'>
+                <TitleH1>
+                    <h1>Login</h1>
+                </TitleH1>
 
-                </Form>
-            </Page>
+                <SectionData>
+                    <Label>Email:</Label>
+                    <Input type="text" placeholder="Email" />
+                </SectionData>
+                
+                <SectionData>
+                    <Label>Senha:</Label>
+                    <Input type="text" placeholder="Senha" />
+                </SectionData>
+                
+                <Button>Login</Button>
+                
+                <Link href='#'>Esqueceu a senha?</Link>
+                <Link href='#'>Criar uma conta</Link>
+            </Form>
         </>
     )
 }
