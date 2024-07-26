@@ -32,18 +32,19 @@ const NavBarBrand = styled.div`
     @media (max-width: 820px) {
         position: relative;
         left: 20px;
+        display: inline;
     }
 `;
 
 const Container = styled.div`
-    display: grid;
-    grid-template-columns: 25% auto;
+    display: flex;
 `;
 
 const SideBar = styled.div`
     background-color: #103d55;
-    height: 100vh;
     display: inline;
+    z-index: 1;
+    width: 25vw;
 
     @media (max-width: 820px) {
         display: none;
@@ -53,6 +54,7 @@ const SideBar = styled.div`
 const Content = styled.div`
     background-color: #5d97b9;
     height: 100vh;
+    width: 75vw;
 
     @media (max-width: 820px) {
         width: 100vw;
@@ -95,20 +97,6 @@ const ItemDiscipline = styled.div`
     font-size: 1em;
     border-radius: 10px;
     text-align: center;
-
-    /* @media (min-width: 800px) {
-        margin-left: 30px;
-        background: #042937;
-        width: 200px;
-        border: none;
-        color: white;
-        margin-bottom: 10px;
-        padding: 15px 35px;
-        cursor: pointer;
-        font-size: 1em;
-        border-radius: 10px;
-        text-align: center;
-    } */
 `;
 
 const IconHamburguer = styled.button`
@@ -118,11 +106,11 @@ const IconHamburguer = styled.button`
     display: none;
 
     @media (max-width: 820px) {
-        display: inline;
         font-size: 40px;
         position: fixed;
-        left: 12px;
-        top: 12px;
+        top: 10px;
+        left: 10px;
+        display: inline;
     }
 `;
 
@@ -136,24 +124,12 @@ function add_discipline(){
     // adicionar '4': 'Quimica'
 }
 
-window.addEventListener('resize', () => {
-    let sidebar = document.getElementById('sidebar')
-
-    if (window.innerWidth >= 820) {
-        sidebar.className = 'appears'
-    } else {
-        sidebar.className = 'hidden'
-    }
-})
-
 function Home() {
 
     const [visibleSideBar, setVisibleSideBar] = useState(true);
     const [classSideBar, setClassSideBar] = useState(true);
-    // let sidebar = document.getElementById('sidebar')
 
     function toggle_sidebar() {
-        console.log(visibleSideBar)
         if (visibleSideBar) {
             setClassSideBar('appears')
         } else {
@@ -172,7 +148,7 @@ function Home() {
             </NavBarBrand>
         </NavBar>
         <Container>
-            <SideBar id='sidebar' className={classSideBar}>
+            <SideBar className={classSideBar}>
                 <TitleSideBar>Disciplinas</TitleSideBar>
                 <ButtonAddDiscipline onClick={add_discipline}>Adicionar</ButtonAddDiscipline>
                 {Object.entries(disciplines).map(([id, name]) => (
