@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 
 // Page login
 const Page = styled.div`
-    background-color: #222831;
+    background-color: #053B50;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -29,7 +29,7 @@ const Form = styled.form`
   align-items: center;
   height: 50vh;
   width: 350px;
-  background-color: #233142;
+  background-color: #245e7d;
   border-radius: 15px;
 `;
 
@@ -61,7 +61,7 @@ const Input = styled.input`
 
 // button login
 const Button = styled.button`
-  background: #000033;
+  background: #0f3c5a;
   width: 270px;
   border: none;
   color: white;
@@ -80,7 +80,7 @@ const Button = styled.button`
 const Link = styled.a`
     display: block;
     margin-bottom: 5px;
-    color: #007bff;
+    color: #009dff;
     text-decoration: none;
 `;
 
