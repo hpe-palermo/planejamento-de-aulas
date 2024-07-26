@@ -92,15 +92,20 @@ const Link = styled.a`
     text-decoration: none;
 `;
 
-function Login() {
+function Cadastro() {
 
     return (
         <>
             <GlobalStyle />
             <Form action='#' method='post'>
                 <TitleH1>
-                    <h1>Login</h1>
+                    <h1>Cadastro</h1>
                 </TitleH1>
+
+                <SectionData>
+                    <Label>Username:</Label>
+                    <Input type="text" placeholder="Username" />
+                </SectionData>
 
                 <SectionData>
                     <Label>Email:</Label>
@@ -112,13 +117,10 @@ function Login() {
                     <Input type="text" placeholder="Senha" />
                 </SectionData>
                 
-                <Button>Login</Button>
-                
-                <Link href='#'>Esqueceu a senha?</Link>
-                <Link href='/cadastro'>Criar uma conta</Link>
+                <Button>Criar Conta</Button>
             </Form>
         </>
     )
 }
 
-export default Login
+export default Cadastro
