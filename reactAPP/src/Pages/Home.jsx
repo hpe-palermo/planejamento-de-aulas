@@ -7,6 +7,14 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         background-color: #042937;
     }
+
+    .appears {
+        display: inline
+    }
+
+    .hidden {
+        display: none
+    }
 `;
 
 const NavBar = styled.nav`
@@ -124,28 +132,35 @@ const disciplines = {
     '3': 'Fisica',
 }
 
-function addDiscipline(){
+function add_discipline(){
     // adicionar '4': 'Quimica'
 }
 
+window.addEventListener('resize', () => {
+    let sidebar = document.getElementById('sidebar')
+
+    if (window.innerWidth >= 820) {
+        sidebar.className = 'appears'
+    } else {
+        sidebar.className = 'hidden'
+    }
+})
+
 function Home() {
 
-    const [appearsSideBar, setAppearsSideBar] = useState(false);
-    // const [classAppearsSideBar, setClassAppearsSideBar] = useState('.appears');
-    // const [classToggleSideBar, setClassToggleSideBar] = useState('.appears');
+    const [visibleSideBar, setVisibleSideBar] = useState(true);
+    const [classSideBar, setClassSideBar] = useState(true);
+    // let sidebar = document.getElementById('sidebar')
 
     function toggle_sidebar() {
-        console.log(appearsSideBar)
+        console.log(visibleSideBar)
+        if (visibleSideBar) {
+            setClassSideBar('appears')
+        } else {
+            setClassSideBar('hidden')
+        }
         
-        // if (appearsSideBar) {
-            // setClassAppearsSideBar('.hideen')
-            // setClassToggleSideBar('none')
-        // } else {
-            // setClassAppearsSideBar('.appears')
-            // setClassToggleSideBar('inline')
-        // }
-
-        setAppearsSideBar(!appearsSideBar)
+        setVisibleSideBar(!visibleSideBar)
     }
     
     return (
@@ -157,9 +172,9 @@ function Home() {
             </NavBarBrand>
         </NavBar>
         <Container>
-            <SideBar>
+            <SideBar id='sidebar' className={classSideBar}>
                 <TitleSideBar>Disciplinas</TitleSideBar>
-                <ButtonAddDiscipline onClick={addDiscipline}>Adicionar</ButtonAddDiscipline>
+                <ButtonAddDiscipline onClick={add_discipline}>Adicionar</ButtonAddDiscipline>
                 {Object.entries(disciplines).map(([id, name]) => (
                         <ItemDiscipline className='item-disciline' key={id}>{name}</ItemDiscipline>
                     ))}
