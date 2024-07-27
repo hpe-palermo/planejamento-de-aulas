@@ -50,6 +50,7 @@ const SideBar = styled.div`
 
     @media (max-width: 820px) {
         display: none;
+        /* width: 450px; */
     }
 `;
 
@@ -69,7 +70,6 @@ const TitleSideBar = styled.h2`
 `;
 
 const ButtonAddDiscipline = styled.button`
-    margin-left: 30px;
     background: #08662f;
     width: 270px;
     border: none;
@@ -87,8 +87,13 @@ const ButtonAddDiscipline = styled.button`
     }
 `;
 
+const ContainerItemSideBar = styled.div`
+    width: 350px;
+    display: flex;
+    justify-content: center;
+`;
+
 const ItemDiscipline = styled.div`
-    margin-left: 30px;
     background: #042937;
     width: 200px;
     border: none;
@@ -131,7 +136,19 @@ function Home() {
     const [visibleSideBar, setVisibleSideBar] = useState(true);
     const [classSideBar, setClassSideBar] = useState(true);
 
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 820) {
+            setVisibleSideBar(true)
+            setClassSideBar('appears')
+        } else {
+            setVisibleSideBar(false)
+            setClassSideBar('hidden')
+        }
+    })
+
     function toggle_sidebar() {
+        console.log("visibleSideBar: " + visibleSideBar)
+
         if (visibleSideBar) {
             setClassSideBar('appears')
         } else {
@@ -152,10 +169,16 @@ function Home() {
         <Container>
             <SideBar className={classSideBar}>
                 <TitleSideBar>Disciplinas</TitleSideBar>
-                <ButtonAddDiscipline onClick={add_discipline}>Adicionar</ButtonAddDiscipline>
-                {Object.entries(disciplines).map(([id, name]) => (
-                        <ItemDiscipline className='item-disciline' key={id}>{name}</ItemDiscipline>
-                    ))}
+                <ContainerItemSideBar>
+                    <ButtonAddDiscipline onClick={add_discipline}>Adicionar</ButtonAddDiscipline>
+                </ContainerItemSideBar>
+                
+                    {Object.entries(disciplines).map(([id, name]) => (
+                        <ContainerItemSideBar key={id}>
+                            <ItemDiscipline className='item-disciline' key={id}>{name}</ItemDiscipline>
+                        </ContainerItemSideBar>
+                        ))}
+                
             </SideBar>
             <Content>
                 Content
