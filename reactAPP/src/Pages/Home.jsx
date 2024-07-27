@@ -38,13 +38,15 @@ const NavBarBrand = styled.div`
 
 const Container = styled.div`
     display: flex;
+    align-items: stretch;
 `;
 
 const SideBar = styled.div`
     background-color: #103d55;
     display: inline;
     z-index: 1;
-    width: 25vw;
+    width: 350px;
+    height: 100vh;
 
     @media (max-width: 820px) {
         display: none;
@@ -54,7 +56,7 @@ const SideBar = styled.div`
 const Content = styled.div`
     background-color: #5d97b9;
     height: 100vh;
-    width: 75vw;
+    width: calc(100vw - 350px);
 
     @media (max-width: 820px) {
         width: 100vw;
@@ -161,6 +163,7 @@ function Home() {
                         <i class="bi bi-list"></i>
                     </IconHamburguer>
             </Content>
+           
         </Container>
         </>
     )
