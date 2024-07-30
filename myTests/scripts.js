@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     const openSidebarBtn = document.getElementById('open-sidebar');
     const closeSidebarBtn = document.getElementById('close-sidebar');
