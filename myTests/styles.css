@@ -54,6 +54,10 @@ body {
 
 /* ------------------------------- SIDEBAR ------------------------------- */
 
+.close-sidebar {
+    display: none;
+}
+
 .sidebar {
     height: calc(100vh - 72px);
     background-color: var(--secondary-color);
@@ -71,6 +75,16 @@ body {
     .menu-toggle {
         display: inline;
         cursor: pointer;
+    }
+
+    .title-close-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .close-sidebar {
+        display: inline;
     }
 
     .content {
