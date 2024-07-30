@@ -159,10 +159,6 @@ body {
     transform: translateX(-100%);
 }
 
-.dios-mio {
-    overflow-y: auto;
-}
-
 .bg-linear {
     background: linear-gradient(45deg, var(--primary-color), var(--tertiary-color));
 }
@@ -171,4 +167,125 @@ body {
     height: 550px;
     width: calc(100%);
     border: 3px solid var(--primary-color);
+}
+
+.dios-mio {
+    overflow-y: auto;
+}
+
+
+/* ------------------------------- SCROLL BAR ------------------------------- */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 123, 255);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(0, 123, 255);
+}
+
+/* ------------------------------- MODAL ------------------------------- */
+.modal {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+}
+
+.close-modal {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.modal-content {
+    position: fixed;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+.input-section {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-section input {
+    width: 300px;
+}
+
+.days-of-week {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+.day {
+    aspect-ratio: 1 / 1;
+    height: 35px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+}
+
+.day:hover, .selected {
+    background-color: var(--tertiary-color);
+}
+
+button[type="submit"]:hover {
+    border: 1px solid #fff;
+}
+
+.modal-footer {
+    border: none;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.footer-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-content {
+    cursor: pointer;
+}
+
+.list-contents {
+    max-height: 80px;
+    overflow-y: auto;
+}
+
+.content-displine {
+    margin-bottom: 15px;
+    display: flex;
 }
