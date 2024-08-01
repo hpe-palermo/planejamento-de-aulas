@@ -66,11 +66,11 @@
                             <input type="number" class="form-control" id="hours-discipline" placeholder="Carga Horária">
                         </div>
                         <div class="days-of-week d-flex justify-content-evenly mb-3">
-                            <div class="day" data-day="S">S</div>
-                            <div class="day" data-day="T">T</div>
-                            <div class="day" data-day="Q">Q</div>
-                            <div class="day" data-day="Q">Q</div>
-                            <div class="day" data-day="S">S</div>
+                            <div class="day-week" data-day-week="S">S</div>
+                            <div class="day-week" data-day-week="T">T</div>
+                            <div class="day-week" data-day-week="Q">Q</div>
+                            <div class="day-week" data-day-week="Q">Q</div>
+                            <div class="day-week" data-day-week="S">S</div>
                         </div>
                         <div class="modal-footer">
                             <div class="footer-header d-flex justify-content-between">
@@ -89,7 +89,41 @@
             <!-- main content -->
             <div class="content bg-linear text-color col-md">
                 <div class="dios-mio">
-                    <div class="item-content calendar">Calendar</div>
+                    <div class="item-content calendar" id="calendar">
+                        <div class="calendar-header">
+                            <div class="item-calendar-header">
+                                <i class="bi-chevron-left fs-3"></i>
+                            </div>
+                            <div class="item-calendar-header">
+                                <h2 id="month"></h2>
+                            </div>
+
+                            <div class="item-calendar-header">
+                                <i class="bi-chevron-right fs-3"></i>
+                            </div>
+                        </div>
+                        <div class="calendar-body">
+                            <div class="days-week-name">
+                                <div class="day-week-name-item">Dom</div>
+                                <div class="day-week-name-item">Seg</div>
+                                <div class="day-week-name-item">Ter</div>
+                                <div class="day-week-name-item">Qua</div>
+                                <div class="day-week-name-item">Qui</div>
+                                <div class="day-week-name-item">Sex</div>
+                                <div class="day-week-name-item">Sáb</div>
+                            </div>
+                            <div class="days-fs-letter">
+                                <div class="day-week-name-item">D</div>
+                                <div class="day-week-name-item">S</div>
+                                <div class="day-week-name-item">T</div>
+                                <div class="day-week-name-item">Q</div>
+                                <div class="day-week-name-item">Q</div>
+                                <div class="day-week-name-item">S</div>
+                                <div class="day-week-name-item">S</div>
+                            </div>
+                            <div class="days-of-month" id="days-of-month"></div>
+                        </div>
+                    </div>
                     <div class="item-content tasks">Tasks</div>
                 </div>
             </div>
