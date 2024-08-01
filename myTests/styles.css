@@ -51,6 +51,17 @@ body {
 
 /* ------------------------------- SIDEBAR ------------------------------- */
 
+.backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 90;
+}
+
 .close-sidebar {
     display: none;
 }
@@ -78,6 +89,7 @@ body {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-top: 20px;
     }
 
     .close-sidebar {
@@ -90,7 +102,7 @@ body {
     }
 
     .sidebar {
-        height: 100%;
+        height: calc(100% + 20px);
         position: fixed;
         top: 0;
         left: 0;
@@ -106,6 +118,7 @@ body {
 .ctn-button-add {
     text-align: center;
     padding: 10px;
+    border-bottom: 3px solid #eee;
 }
 
 
@@ -114,7 +127,8 @@ body {
     color: var(--primary-color);
     width: 100%;
     font-size: 17px;
-    transition: color .2s;
+    transition: background-color .2s;
+    margin-bottom: 10px;
 }
 
 .ctn-button-add button:hover {
@@ -131,10 +145,10 @@ body {
     background-color: var(--primary-color);
     color: #e2e2e2;
     margin: 0;
-    border: none;
-    border-radius: 0px;
     padding: 20px;
     font-size: 17px;
+    border: none;
+    border-bottom: 1px solid #eee;
 }
 
 .list-group-item:hover {
@@ -242,7 +256,7 @@ body {
     margin-bottom: 20px;
 }
 
-.days-week {
+.day-week {
     aspect-ratio: 1 / 1;
     height: 35px;
     background-color: var(--primary-color);
@@ -254,8 +268,11 @@ body {
     cursor: pointer;
 }
 
-.day:hover,
-.selected {
+.day-week:hover {
+    background-color: var(--tertiary-color);
+}
+
+.day-week.selected {
     background-color: var(--tertiary-color);
 }
 
@@ -349,7 +366,7 @@ button[type="submit"]:hover {
 }
 
 .today {
-    background-color: var(--tertiary-color);    
+    background-color: var(--tertiary-color);
 }
 
 @media (max-width: 768px) {
@@ -361,5 +378,86 @@ button[type="submit"]:hover {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+    }
+}
+
+
+/* ------------------------------- TASKS ------------------------------- */
+.tasks-title {
+    background-color: var(--primary-color);
+    padding: 3px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.list-tasks {
+    padding: 20px;
+}
+
+.list-tasks-header {
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    gap: 2px;
+}
+
+.list-tasks-header div {
+    flex: 1;
+    padding: 5px;
+    text-align: center;
+}
+
+.list-tasks-header div:nth-child(1) {
+    flex: 2;
+}
+
+.task {
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    gap: 2px;
+    border: 2px solid var(--primary-color);
+}
+
+.task div {
+    background-color: var(--secondary-color);
+    flex: 1;
+    padding: 5px;
+    text-align: center;
+}
+
+.task div:nth-child(1) {
+    flex: 2;
+}
+
+.status-task-full {
+    display: inline;
+}
+
+.status-task-resp {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .status-task-full {
+        display: none;
+    }
+
+    .status-task-resp {
+        display: inline;
+    }
+
+    .task div {
+        background-color: var(--secondary-color);
+        width: 30%;
+        padding: 5px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .task div:nth-child(1) {
+        width: 40%;
     }
 }
