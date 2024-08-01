@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     const openSidebarBtn = document.getElementById('open-sidebar');
     const closeSidebarBtn = document.getElementById('close-sidebar');
@@ -9,20 +8,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const addContentBtn = document.getElementById('add-content');
     const listContents = document.getElementById('list-contents');
     const form = document.querySelector('form');
-    const calendar = document.querySelector('#calendar');
     const daysOfMonth = document.querySelector('#days-of-month');
+    const daysWeek = document.querySelectorAll('.day-week');
+    const backdrop = document.querySelector('.backdrop');
 
     openSidebarBtn.addEventListener('click', function () {
         sidebar.classList.add('active');
+        sidebar.style.zIndex = 100;
+        backdrop.style.display = 'inline';
     });
 
     closeSidebarBtn.addEventListener('click', function () {
         sidebar.classList.remove('active');
+        backdrop.style.display = 'none';
     });
 
     document.addEventListener('click', function (event) {
         if (!sidebar.contains(event.target) && !openSidebarBtn.contains(event.target)) {
             sidebar.classList.remove('active');
+            backdrop.style.display = 'none';
         }
     });
 
@@ -46,6 +50,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const delContentBtn = contentDiscipline.querySelector('.del-content');
         delContentBtn.addEventListener('click', function () {
             listContents.removeChild(contentDiscipline);
+        });
+    });
+
+    Array.from(daysWeek).forEach(day => {
+        day.addEventListener('click', () => {
+            day.classList.toggle('selected');
         });
     });
 
@@ -86,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
             day = document.createElement('div');
             day.classList.add('day-of-month');
             day.textContent = '';
-            console.log(null)
             newWeek.appendChild(day);
             daysWeek++;
         }
@@ -95,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function () {
             day = document.createElement('div');
             day.classList.add('day-of-month');
             day.innerHTML = `<div>${i}</div>`;
-            console.log(i)
 
             if (i === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
                 day.classList.add('today');
@@ -105,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
             daysWeek++;
 
             if (daysWeek % 7 === 0) {
-                console.log('-------------------')
                 daysOfMonth.appendChild(newWeek);
                 newWeek = document.createElement('div');
                 newWeek.classList.add('week-of-month');
