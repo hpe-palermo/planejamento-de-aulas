@@ -26,6 +26,9 @@
     <div class="container-fluid">
         <div class="main-container row">
 
+            <!-- backdrop sidebar -->
+            <div class="backdrop"></div>
+
             <!-- sidebar -->
             <div class="sidebar col-md-3 p-0" id="sidebar">
                 <div class="title-close-btn d-flex justify-content-between align-items-center p-3 pb-2">
@@ -124,16 +127,49 @@
                             <div class="days-of-month" id="days-of-month"></div>
                         </div>
                     </div>
-                    <div class="item-content tasks">Tasks</div>
+                    <div class="item-content tasks">
+                        <div class="tasks-title">
+                            <div class="h2 p-3">Tarefas</div>
+                            <!-- <div><i class="bi-plus-circle"></i></div> -->
+                        </div>
+                        <div class="list-tasks">
+                            <div class="list-tasks-header">
+                                <div>Descrição</div>
+                                <div>Data</div>
+                                <div>Status</div>
+                            </div>
+                            <div class="tasks">
+                                <div class="task">
+                                    <div class="name-task">Fazer o frontend</div>
+                                    <div class="date-task">2024-08-10</div>
+                                    <div class="status-task-full">
+                                        <div class="badge bg-success text-color fs-6">Concluído</div>
+                                    </div>
+                                    <div class="status-task-resp">
+                                        <div class="badge bg-success text-color fs-6"><i class="bi-check"></i></div>
+                                    </div>
+                                </div>
+                                <div class="task">
+                                    <div class="name-task">Fazer o backend</div>
+                                    <div class="date-task">2024-08-10</div>
+                                    <div class="status-task-full">
+                                        <div class="badge bg-danger text-color fs-6">Pendente</div>
+                                    </div>
+                                    <div class="status-task-resp">
+                                        <div class="badge bg-danger text-color fs-6"><i class="bi-x"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script src="scriptsBT.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+        <script src="scriptsBT.js"></script>
 
 </body>
 
