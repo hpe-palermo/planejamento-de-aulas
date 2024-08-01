@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     const openSidebarBtn = document.getElementById('open-sidebar');
     const closeSidebarBtn = document.getElementById('close-sidebar');
@@ -8,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const addContentBtn = document.getElementById('add-content');
     const listContents = document.getElementById('list-contents');
     const form = document.querySelector('form');
+    const calendar = document.querySelector('#calendar');
+    const daysOfMonth = document.querySelector('#days-of-month');
 
     openSidebarBtn.addEventListener('click', function () {
         sidebar.classList.add('active');
@@ -60,17 +63,56 @@ document.addEventListener("DOMContentLoaded", function () {
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const discipline = document.getElementById('name-discipline').value;
-        const days = document.querySelectorAll('.day.selected');
-        const contents = document.querySelectorAll('#content-discipline');
-
-        // API
-        let jsonNewDiscipline = {
-            discipline,
-            days: Array.from(days).map(day => day.textContent),
-            contents: Array.from(contents).map(content => content.value)
-        }
 
         modal.style.display = 'none';
     });
+
+    function createCalendar() {
+        const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+        const today = new Date();
+        const currentMonth = today.getMonth();
+        const currentYear = today.getFullYear();
+        const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+        document.getElementById('month').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+        let currentDay = firstDayOfMonth.getDay();
+        let daysWeek = 0;
+        let newWeek = document.createElement('div');
+        newWeek.classList.add('week-of-month');
+        let day = document.createElement('div');
+
+        for (let i = 0; i < currentDay; i++) {
+            day = document.createElement('div');
+            day.classList.add('day-of-month');
+            day.textContent = '';
+            console.log(null)
+            newWeek.appendChild(day);
+            daysWeek++;
+        }
+
+        for (let i = 1; i <= daysInMonth; i++) {
+            day = document.createElement('div');
+            day.classList.add('day-of-month');
+            day.innerHTML = `<div>${i}</div>`;
+            console.log(i)
+
+            if (i === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
+                day.classList.add('today');
+            }
+
+            newWeek.appendChild(day);
+            daysWeek++;
+
+            if (daysWeek % 7 === 0) {
+                console.log('-------------------')
+                daysOfMonth.appendChild(newWeek);
+                newWeek = document.createElement('div');
+                newWeek.classList.add('week-of-month');
+            }
+        }
+
+    }
+
+    createCalendar();
 });
