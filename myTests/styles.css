@@ -57,7 +57,7 @@ body {
 
 .sidebar {
     height: calc(100vh - 72px);
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: #e2e2e2;
     width: 400px;
     transition: .5s;
@@ -128,7 +128,7 @@ body {
 }
 
 .list-group-item {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: #e2e2e2;
     margin: 0;
     border: none;
@@ -161,9 +161,11 @@ body {
 }
 
 .item-content {
-    height: 550px;
-    width: calc(100%);
-    border: 3px solid var(--primary-color);
+    /* height: 550px; */
+    width: calc(100% - 50px);
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    margin: 20px;
 }
 
 .dios-mio {
@@ -240,7 +242,7 @@ body {
     margin-bottom: 20px;
 }
 
-.day {
+.days-week {
     aspect-ratio: 1 / 1;
     height: 35px;
     background-color: var(--primary-color);
@@ -252,7 +254,8 @@ body {
     cursor: pointer;
 }
 
-.day:hover, .selected {
+.day:hover,
+.selected {
     background-color: var(--tertiary-color);
 }
 
@@ -285,4 +288,78 @@ button[type="submit"]:hover {
 .content-displine {
     margin-bottom: 15px;
     display: flex;
+}
+
+/* ------------------------------- CALENDAR ------------------------------- */
+.calendar {
+    padding: 0;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px;
+}
+
+.calendar-header .item-calendar-header {
+    display: flex;
+    align-items: center;
+}
+
+.calendar-header .item-calendar-header i {
+    cursor: pointer;
+}
+
+.calendar h2 {
+    padding: 10px;
+    text-align: center;
+}
+
+.calendar-body .days-week-name {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.day-week-name-item {
+    background-color: var(--primary-color);
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+}
+
+.calendar-body .days-fs-letter {
+    display: none;
+}
+
+.week-of-month {
+    display: flex;
+    justify-content: space-between;
+}
+
+.day-of-month {
+    flex: 1;
+    border: 1px solid var(--primary-color);
+    height: 80px;
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    padding: 10px 10px 0 0;
+    cursor: pointer;
+}
+
+.today {
+    background-color: var(--tertiary-color);    
+}
+
+@media (max-width: 768px) {
+    .calendar-body .days-week-name {
+        display: none;
+    }
+
+    .calendar-body .days-fs-letter {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
 }
