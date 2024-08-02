@@ -62,7 +62,7 @@ body {
     height: calc(100vh - 72px);
     background-color: var(--primary-color);
     color: #e2e2e2;
-    width: 400px;
+    width: 350px;
     transition: .5s;
 }
 
