@@ -1,7 +1,7 @@
 :root {
-    --primary-color: #170c66;
+    --primary-color: #4da0ee;
     --secondary-color: #202c73;
-    --tertiary-color: #2433b6;
+    --tertiary-color: #000c79;
 }
 
 
@@ -16,6 +16,8 @@ body {
 .container {
     display: grid;
     place-items: center;
+    background-color: var(--tertiary-color);
+    width: 400px;
 }
 
 
@@ -42,10 +44,6 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: var(--tertiary-color);
-    color: #fff;
-}
 
 .btn-google:hover {
     background-color: rgb(179, 175, 175) !important;
