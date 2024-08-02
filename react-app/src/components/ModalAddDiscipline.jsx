@@ -7,11 +7,12 @@ const Modal = styled.div`
         background-color: rgba(0, 0, 0, 0.7);
     }
 
-    &-header {
+    .modal-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         border: none;
+        color: #101010;
     }
 
     .close-modal {
@@ -21,7 +22,7 @@ const Modal = styled.div`
         cursor: pointer;
     }
 
-    &-content {
+    .modal-content {
         position: fixed;
         width: 400px;
         top: 50%;
@@ -31,8 +32,8 @@ const Modal = styled.div`
         border-radius: 10px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         z-index: 100;
-        background-color: var(--secondary-color);
-        color: #fff;
+        background-color:  htmlFor=(--secondary-color);
+        color: #101010;
     }
 
     .input-section {
@@ -54,7 +55,7 @@ const Modal = styled.div`
     .day-week {
         aspect-ratio: 1 / 1;
         height: 35px;
-        background-color: var(--primary-color);
+        background-color: #101010;
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -63,16 +64,20 @@ const Modal = styled.div`
         cursor: pointer;
     }
 
-    .day-week:hover {
-        background-color: var(--tertiary-color);
+    .day-week:hover, .day-week.selected {
+        background-color: #d2d2d2;
+        color: #101010;
     }
 
-    .day-week.selected {
-        background-color: var(--tertiary-color);
+    button {
+        background-color: #101010;
+        color: #fff;
     }
 
-    button[type="submit"]:hover {
-        border: 1px solid #fff;
+    button:hover {
+        border: 1px solid #101010;
+        color: #101010;
+        background-color: #d2d2d2;
     }
 
     &-footer {
@@ -103,13 +108,13 @@ const Modal = styled.div`
     }
 `;
 
-function ModalAddDiscipline({ active }) {
+function ModalAddDiscipline({ active , closeModal}) {
     return (
         <Modal className={`modal d-${active ? 'inline' : 'none'}`} id="modal">
             <div className="modal-content">
                 <div className="modal-header d-flex justify-content-between align-items-center">
                     <h3>Adicionar Disciplina</h3>
-                    <div className="close-modal fs-4" id="close-modal">
+                    <div onClick={closeModal} className="close-modal fs-4" id="close-modal">
                         <i className="bi-x-circle"></i>
                     </div>
                 </div>

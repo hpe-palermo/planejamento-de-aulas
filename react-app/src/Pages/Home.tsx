@@ -20,7 +20,7 @@ function Home() {
         setSidebarActive(!sidebarActive);
     };
 
-    const addDiscipline = () => {
+    const toggleModal = () => {
         setModalDisciplineActive(!modalDisciplineActive);
     };
 
@@ -28,9 +28,9 @@ function Home() {
         <>
             <NavBar active={sidebarActive} functionToggle={toggleSidebar} />
             <Container>
-                <ModalAddDiscipline active={modalDisciplineActive} />
+                <ModalAddDiscipline active={modalDisciplineActive} closeModal={toggleModal} />
                 <Backdrop active={sidebarActive} />
-                <SideBar active={sidebarActive} closeSideBar={toggleSidebar} addDiscipline={addDiscipline} />
+                <SideBar active={sidebarActive} closeSideBar={toggleSidebar} addDiscipline={toggleModal} />
                 <ContentPage />
             </Container>
         </>
