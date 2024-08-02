@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Container = styled.div`
     background-color: #dddcdc;
