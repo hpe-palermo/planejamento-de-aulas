@@ -1,7 +1,7 @@
 :root {
-    --primary-color: #170c66;
+    --primary-color: #0b0155;
     --secondary-color: #202c73;
-    --tertiary-color: #2433b6;
+    --tertiary-color: #248db6;
 }
 
 /* ------------------------------- COLORS ------------------------------- */
@@ -129,8 +129,7 @@ body {
 }
 
 .list-group {
-    background-color: #2e3e50;
-    border-radius: 0px;
+    background-color: var(--primary-color);
 }
 
 .list-group-item {
@@ -140,10 +139,10 @@ body {
     padding: 20px;
     font-size: 17px;
     border: none;
-    border-bottom: 1px solid #eee;
 }
 
 .list-group-item:hover {
+    border-radius: 10px;
     background-color: var(--tertiary-color);
 }
 
@@ -163,7 +162,7 @@ body {
 }
 
 .bg-linear {
-    background: linear-gradient(45deg, var(--primary-color), var(--tertiary-color));
+    background: linear-gradient(-45deg, var(--primary-color), var(--tertiary-color));
 }
 
 .item-content {
