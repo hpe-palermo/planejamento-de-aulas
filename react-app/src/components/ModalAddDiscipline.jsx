@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Modal = styled.div`
@@ -108,7 +108,46 @@ const Modal = styled.div`
     }
 `;
 
-function ModalAddDiscipline({ active , closeModal}) {
+function ModalAddDiscipline({ active, closeModal }) {
+
+    const [days, setDays] = useState([
+        { day: 'S', state: false },
+        { day: 'T', state: false },
+        { day: 'Q', state: false },
+        { day: 'Q', state: false },
+        { day: 'S', state: false }
+    ]);
+
+    const toggleDaySelected = (index) => {
+        setDays(prevDays =>
+            prevDays.map((item, i) =>
+                i === index ? { ...item, state: !item.state } : item
+            )
+        );
+    };
+
+
+
+    const [listContents, setListContents] = useState([]);
+
+    const addContent = () => {
+        let content = { id: listContents.length, content: '' };
+        const newListContents = [...listContents, content];
+        setListContents(newListContents);
+
+        console.log('listContents');
+        console.log(listContents);
+    };
+
+    const editContent = (index, value) => {
+        setListContents(contents => {
+            contents.map((item, i) =>
+                i == index ? { ...item, content: vlr } : item
+            );
+        });
+    };
+
+
     return (
         <Modal className={`modal d-${active ? 'inline' : 'none'}`} id="modal">
             <div className="modal-content">
@@ -129,18 +168,28 @@ function ModalAddDiscipline({ active , closeModal}) {
                         <input type="number" className="form-control" id="hours-discipline" placeholder="Carga Horária" />
                     </div>
                     <div className="days-of-week d-flex justify-content-evenly mb-3">
-                        <div className="day-week" data-day-week="S">S</div>
-                        <div className="day-week" data-day-week="T">T</div>
-                        <div className="day-week" data-day-week="Q">Q</div>
-                        <div className="day-week" data-day-week="Q">Q</div>
-                        <div className="day-week" data-day-week="S">S</div>
+                        {days.map((item, index) => (
+                            <div
+                                key={index}
+                                onClick={() => toggleDaySelected(index)}
+                                className={`day-week ${item.state ? 'selected' : ''}`}
+                            >
+                                {item.day}
+                            </div>
+                        ))}
                     </div>
                     <div className="modal-footer">
                         <div className="footer-header d-flex justify-content-between">
                             <h4>Conteúdos</h4>
-                            <div className="add-content fs-4" id="add-content">
+                            <div onClick={addContent} className="add-content fs-4" id="add-content">
                                 <i className="bi-plus-circle"></i>
                             </div>
+                            {listContents.map((content, index) => (
+                                <div className="content-displine d-flex mb-3">
+                                    <input type="text" id="content-discipline" class="form-control" placeholder="Conteúdo" />
+                                    <div class="del-content fs-4 ms-2"><i class="bi-dash-circle text-danger"></i></div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                     <div className="list-contents" id="list-contents"></div>

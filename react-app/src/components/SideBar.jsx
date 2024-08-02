@@ -1,4 +1,4 @@
-import React, { act } from "react";
+import React, { act, useState } from "react";
 import styled from "styled-components";
 
 const SideBarComponent = styled.div`
@@ -95,6 +95,10 @@ const SideBarComponent = styled.div`
 
 function SideBar({ active, closeSideBar, addDiscipline }) {
 
+    const [disciplines, setDisciplines] = useState([
+        'Matemática', 'Banco de Dados', 'POO', 'Django'
+    ]);
+
     return (
         <SideBarComponent className={`sidebar ${active ? 'active' : ''}`} id="sidebar">
             <div className="title-close-btn d-flex justify-content-between align-items-center p-3 pb-2">
@@ -108,9 +112,12 @@ function SideBar({ active, closeSideBar, addDiscipline }) {
                 </button>
             </div>
             <ul className="container p-4 list-group d-flex text-center pt-2">
-                <li className="list-group-item">Matemática</li>
-                <li className="list-group-item">Banco de Dados</li>
-                <li className="list-group-item">POO</li>
+                {disciplines.map((discipline, index) => (
+                    <li key={index} className="list-group-item">
+                        {discipline}
+                    </li>
+                )
+                )}
             </ul>
         </SideBarComponent>
     )

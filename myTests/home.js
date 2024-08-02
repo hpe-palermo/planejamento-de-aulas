@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
     listContents.addEventListener('click', function (event) {
         if (event.target.classList.contains('bi-dash-circle')) {
             event.target.closest('.content-displine').remove();
+            // event.target.remove();
         }
     });
 
