@@ -93,7 +93,7 @@ const SideBarComponent = styled.div`
     }
 `;
 
-function SideBar({ active, closeSideBar }) {
+function SideBar({ active, closeSideBar, addDiscipline }) {
 
     return (
         <SideBarComponent className={`sidebar ${active ? 'active' : ''}`} id="sidebar">
@@ -103,7 +103,7 @@ function SideBar({ active, closeSideBar }) {
                 </div>
             </div>
             <div className="ctn-button-add text-center" id="ctn-button-add">
-                <button className="btn bg-primary-color p-3">
+                <button onClick={addDiscipline} className="btn bg-primary-color p-3">
                     <i className="bi-plus-circle"></i> Adicionar Disciplina
                 </button>
             </div>

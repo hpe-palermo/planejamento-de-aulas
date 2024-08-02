@@ -9,7 +9,6 @@ const BackdropComponent = styled.div`
     height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.7);
-    /* z-index: ${props => (props.active ? 'block' : 'none')}; */
 `;
 
 function Backdrop({ active }) {
