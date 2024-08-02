@@ -16,11 +16,13 @@ const NavBarComponent = styled.nav`
     }
 `;
 
-function NavBar() {
+function NavBar({ active, functionToggle }) {
+
+    
     return (
         <NavBarComponent className="navbar p-3 w-100">
             <div className="container-fluid d-flex justify-content-between">
-                <div className="menu-toggle active fs-4d-flex align-items-center" id="open-sidebar">
+                <div onClick={functionToggle} className="menu-toggle active fs-4d-flex align-items-center" id="open-sidebar">
                     <i className="bi-list text-color"></i>
                 </div>
                 <h1 className="navbar-brand mb-0 fs-4 text-colord-flex align-items-center text-light">
