@@ -118,6 +118,7 @@ const Calendar = styled.div`
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
+            color: #d2d2d2;
         }
     }
 `;
@@ -182,13 +183,13 @@ const SectionTasks = styled.div`
         flex: 2;
     }
 
-    .status-task-full {
+    /* .status-task-full {
         display: inline;
     }
 
     .status-task-resp {
         display: none;
-    }
+    } */
 
     @media (max-width: 768px) {
         
@@ -197,7 +198,8 @@ const SectionTasks = styled.div`
         }
 
         .status-task-resp {
-            display: inline;
+            display: flex;
+            justify-content: center;
         }
 
         .task div {
@@ -214,6 +216,20 @@ const SectionTasks = styled.div`
             width: 40%;
         }
     }
+
+    .filter select {
+        padding: 5px;
+        background-color: var(--primary-color);
+        color: var(--tertiary-color);
+        border-radius: 5px;
+    }
+
+    .btn-add-tasks {
+        background-color: var(--primary-color);
+        color: var(--tertiary-color);
+        border-color: 1px solid var(--tertiary-color);
+        cursor: pointer;
+    }
 `;
 
 function ContentPage() {
@@ -222,6 +238,15 @@ function ContentPage() {
     const [weeksMonth, setWeeksMonth] = useState([]);
     const [numberDaysMonth, setNumberDaysMonth] = useState([]);
     const today = new Date();
+    const [tasks, setTasks] = useState([
+        { task: 'Fazer o Frontend', discipline: 'Django', date: '2024-08-09', status: 'Concluído' },
+        { task: 'Implementar Autenticação', discipline: 'React', date: '2024-08-10', status: 'Pendente' },
+        { task: 'Criar Banco de Dados', discipline: 'PostgreSQL', date: '2024-08-11', status: 'Em Progresso' },
+        { task: 'Desenvolver API', discipline: 'Node.js', date: '2024-08-12', status: 'Pendente' },
+        { task: 'Testar Aplicação', discipline: 'Mocha', date: '2024-08-13', status: 'Concluído' },
+        { task: 'Deploy', discipline: 'AWS', date: '2024-08-14', status: 'Pendente' },
+        { task: 'Escrever Documentação', discipline: 'Markdown', date: '2024-08-15', status: 'Pendente' },
+    ]);
 
     const createCalendar = () => {
         const monthNames = [
@@ -240,7 +265,6 @@ function ContentPage() {
 
         let weeks = [];
         let days = [];
-        let checkFirstDayWeek = false;
 
         for (let index = 0; index < daysArray.length; index++) {
             const day = daysArray[index];
@@ -253,13 +277,17 @@ function ContentPage() {
             if ((index + 1) % 7 == 0) {
                 weeks.push(days);
                 days = [];
-                checkFirstDayWeek = true;
             }
         }
         setWeeksMonth(weeks);
     };
 
+    const createTasks = () => {
+        // code
+    }
+
     useEffect(createCalendar, []);
+    useEffect(createTasks, []);
 
     return (
         <MainContainer className="content container-fluid">
@@ -311,35 +339,58 @@ function ContentPage() {
             <SectionTasks className="item-content tasks">
                 <div className="tasks-title">
                     <div className="h2 p-3">Tarefas</div>
-                    <div><i className="bi-plus-circle"></i></div>
+                    <div className="d-flex justify-content-between mx-5">
+                        <div className="filter">
+                            Filtrar por <select name="" id="">
+                                <option value="description">Descrição</option>
+                                <option value="discipline">Disciplina</option>
+                                <option value="date">Data</option>
+                                <option value="status">Status</option>
+                            </select>
+                        </div>
+                        <button className="btn-add-tasks btn p-2 mb-3">
+                            <i className="bi-plus-circle"></i> Adicionar Tarefa
+                        </button>
+                    </div>
                 </div>
                 <div className="list-tasks">
                     <div className="list-tasks-header">
                         <div>Descrição</div>
+                        <div>Disciplina</div>
                         <div>Data</div>
                         <div>Status</div>
                     </div>
                     <div className="tasks">
-                        <div className="task">
-                            <div className="name-task">Fazer o frontend</div>
-                            <div className="date-task">2024-08-10</div>
-                            <div className="status-task-full">
-                                <div className="badge bg-success text-color fs-6">Concluído</div>
+                        {tasks.map(({ task, discipline, date, status }) => (
+                            <div className="task">
+                                <div className="name-task">{task}</div>
+                                <div className="discipline-task">{discipline}</div>
+                                <div className="date-task">{date}</div>
+
+                                <div className="status-task-full d-md-flex d-sm-none">
+                                    <div className={
+                                        `badge bg-${
+                                            (status === "Concluído") ? "success" : (status === "Em Progresso") ? "warning" : "danger"
+                                        } text-color fs-6`
+                                    }>
+                                        {status}
+                                    </div>
+                                </div>
+
+                                <div className="status-task-resp d-sm-flex d-md-none">
+                                <div className={
+                                        `badge bg-${
+                                            (status === "Concluído") ? "success" : (status === "Em Progresso") ? "warning" : "danger"
+                                        } text-color fs-6 d-flex justify-content-center`
+                                    }>
+                                        <i className={
+                                            `bi-${(status === "Concluído") ? "check" : (status === "Em Progresso") ? "arrow-clockwise" : "x"}`
+                                        }></i>
+                                    </div>
+                                    
+                                </div>
                             </div>
-                            <div className="status-task-resp">
-                                <div className="badge bg-success text-color fs-6"><i className="bi-check"></i></div>
-                            </div>
-                        </div>
-                        <div className="task">
-                            <div className="name-task">Fazer o backend</div>
-                            <div className="date-task">2024-08-10</div>
-                            <div className="status-task-full">
-                                <div className="badge bg-danger text-color fs-6">Pendente</div>
-                            </div>
-                            <div className="status-task-resp">
-                                <div className="badge bg-danger text-color fs-6"><i className="bi-x"></i></div>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </SectionTasks>
