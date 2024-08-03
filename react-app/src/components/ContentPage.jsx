@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const MainContainer = styled.div`
-    .content {
+    & {
         height: calc(100vh - 72px);
         width: 100%;
         display: flex;
         flex-direction: column;
         padding: 10px;
         transition: .5s;
+        overflow-y: auto;
     }
 
     .content.active {
@@ -27,10 +28,6 @@ const MainContainer = styled.div`
         margin: 20px;
         border-radius: 20px;
     }
-
-    /* .dios-mio {
-        overflow-y: auto;
-    } */
 `;
 
 const Calendar = styled.div`
@@ -250,25 +247,22 @@ function ContentPage() {
             days.push(day);
 
             if ((index + 1) % 7 == 1 && !day && new Date(currentYear, currentMonth, (index + 1)) >= new Date(currentYear, currentMonth, daysInMonth)) {
-                break; // arrumar karai
+                break;
             }
 
             if ((index + 1) % 7 == 0) {
                 weeks.push(days);
                 days = [];
                 checkFirstDayWeek = true;
-                console.log('----------------------------------------------------------------')
             }
         }
         setWeeksMonth(weeks);
-        console.log(weeks);
     };
 
     useEffect(createCalendar, []);
 
     return (
-        <MainContainer className="container-fluid">
-            {/* <div className="dios-mio"> */}
+        <MainContainer className="content container-fluid">
             <Calendar className="item-content calendar rounded-3 mb-3 p-0" id="calendar">
                 <div className="calendar-header">
                     <div className="item-calendar-header">
@@ -349,7 +343,6 @@ function ContentPage() {
                     </div>
                 </div>
             </SectionTasks>
-            {/* </div> */}
         </MainContainer>
     )
 }
