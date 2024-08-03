@@ -11,6 +11,10 @@ const Container = styled.div`
     background-color: #d2d2d2;
 `;
 
+const SubContainer = styled.div`
+    display: flex;
+`;
+
 function Home() {
 
     const [sidebarActive, setSidebarActive] = useState(false);
@@ -30,8 +34,10 @@ function Home() {
             <Container>
                 <ModalAddDiscipline active={modalDisciplineActive} closeModal={toggleModal} />
                 <Backdrop active={sidebarActive} />
-                <SideBar active={sidebarActive} closeSideBar={toggleSidebar} addDiscipline={toggleModal} />
-                <ContentPage />
+                <SubContainer>
+                    <SideBar active={sidebarActive} closeSideBar={toggleSidebar} addDiscipline={toggleModal} />
+                    <ContentPage />
+                </SubContainer>
             </Container>
         </>
     );

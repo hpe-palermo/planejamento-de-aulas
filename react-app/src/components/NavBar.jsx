@@ -18,7 +18,6 @@ const NavBarComponent = styled.nav`
 
 function NavBar({ active, functionToggle }) {
 
-    
     return (
         <NavBarComponent className="navbar p-3 w-100">
             <div className="container-fluid d-flex justify-content-between">
