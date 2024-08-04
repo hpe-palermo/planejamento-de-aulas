@@ -93,11 +93,7 @@ const SideBarComponent = styled.div`
     }
 `;
 
-function SideBar({ active, closeSideBar, addDiscipline }) {
-
-    const [disciplines, setDisciplines] = useState([
-        'Matemática', 'Banco de Dados', 'POO', 'Django'
-    ]);
+function SideBar({ active, closeSideBar, addDiscipline, disciplines }) {
 
     return (
         <SideBarComponent className={`sidebar ${active ? 'active' : ''}`} id="sidebar">

@@ -232,21 +232,27 @@ const SectionTasks = styled.div`
     }
 `;
 
-function ContentPage() {
+function ContentPage({ disciplines, toggleModalTasks }) {
 
     const [nameMonth, setNameMonth] = useState('');
     const [weeksMonth, setWeeksMonth] = useState([]);
     const [numberDaysMonth, setNumberDaysMonth] = useState([]);
     const today = new Date();
     const [tasks, setTasks] = useState([
-        { task: 'Fazer o Frontend', discipline: 'Django', date: '2024-08-09', status: 'Concluído' },
-        { task: 'Implementar Autenticação', discipline: 'React', date: '2024-08-10', status: 'Pendente' },
-        { task: 'Criar Banco de Dados', discipline: 'PostgreSQL', date: '2024-08-11', status: 'Em Progresso' },
-        { task: 'Desenvolver API', discipline: 'Node.js', date: '2024-08-12', status: 'Pendente' },
-        { task: 'Testar Aplicação', discipline: 'Mocha', date: '2024-08-13', status: 'Concluído' },
-        { task: 'Deploy', discipline: 'AWS', date: '2024-08-14', status: 'Pendente' },
-        { task: 'Escrever Documentação', discipline: 'Markdown', date: '2024-08-15', status: 'Pendente' },
+        { task: 'Revisar Álgebra', discipline: 'Matemática', date: '2024-08-09', status: 'Concluído' },
+        { task: 'Implementar Modelo Relacional', discipline: 'Banco de Dados', date: '2024-08-10', status: 'Pendente' },
+        { task: 'Desenvolver Classe Abstrata', discipline: 'POO', date: '2024-08-11', status: 'Em Progresso' },
+        { task: 'Configurar Autenticação', discipline: 'Django', date: '2024-08-12', status: 'Pendente' },
+        { task: 'Resolver Exercícios de Cálculo', discipline: 'Matemática', date: '2024-08-13', status: 'Concluído' },
+        { task: 'Otimizar Consultas SQL', discipline: 'Banco de Dados', date: '2024-08-14', status: 'Pendente' },
+        { task: 'Implementar Herança e Polimorfismo', discipline: 'POO', date: '2024-08-15', status: 'Pendente' },
+        { task: 'Desenvolver API com DRF', discipline: 'Django', date: '2024-08-16', status: 'Pendente' },
+        { task: 'Estudar Geometria', discipline: 'Matemática', date: '2024-08-17', status: 'Concluído' },
+        { task: 'Configurar Backup do Banco', discipline: 'Banco de Dados', date: '2024-08-18', status: 'Pendente' },
+        { task: 'Aplicar Padrões de Design', discipline: 'POO', date: '2024-08-19', status: 'Em Progresso' },
+        { task: 'Configurar Middleware', discipline: 'Django', date: '2024-08-20', status: 'Pendente' },
     ]);
+    const [tasksFiltered, setTasksFiltered] = useState([]);
 
     const createCalendar = () => {
         const monthNames = [
@@ -288,6 +294,19 @@ function ContentPage() {
 
     useEffect(createCalendar, []);
     useEffect(createTasks, []);
+    useEffect(() => {
+        setTasksFiltered(tasks);
+    }, []);
+
+    const getOption = (e) => {
+        let option = e.target.value;
+        if (option == "all") {
+            setTasksFiltered(tasks);
+        } else {
+            let newTasks = tasks.filter(task => task.discipline === e.target.value);
+            setTasksFiltered(newTasks);
+        }
+    };
 
     return (
         <MainContainer className="content container-fluid">
@@ -341,15 +360,16 @@ function ContentPage() {
                     <div className="h2 p-3">Tarefas</div>
                     <div className="d-flex justify-content-between mx-5">
                         <div className="filter">
-                            Filtrar por <select name="" id="">
-                                <option value="description">Descrição</option>
-                                <option value="discipline">Disciplina</option>
-                                <option value="date">Data</option>
-                                <option value="status">Status</option>
+                            <span className="me-2">Disciplinas</span>
+                            <select onChange={getOption}>
+                                <option value="all">Todas</option>
+                                {disciplines.map(discipline => (
+                                    <option value={discipline}>{discipline}</option>
+                                ))}
                             </select>
                         </div>
-                        <button className="btn-add-tasks btn p-2 mb-3">
-                            <i className="bi-plus-circle"></i> Adicionar Tarefa
+                        <button onClick={toggleModalTasks} className="btn-add-tasks btn p-2 mb-3">
+                            <i className="bi-plus-circle"></i> <span className="d-md-inline d-none">Adicionar Tarefa</span>
                         </button>
                     </div>
                 </div>
@@ -361,7 +381,7 @@ function ContentPage() {
                         <div>Status</div>
                     </div>
                     <div className="tasks">
-                        {tasks.map(({ task, discipline, date, status }) => (
+                        {tasksFiltered.map(({ task, discipline, date, status }) => (
                             <div className="task">
                                 <div className="name-task">{task}</div>
                                 <div className="discipline-task">{discipline}</div>
@@ -369,8 +389,7 @@ function ContentPage() {
 
                                 <div className="status-task-full d-md-flex d-sm-none">
                                     <div className={
-                                        `badge bg-${
-                                            (status === "Concluído") ? "success" : (status === "Em Progresso") ? "warning" : "danger"
+                                        `badge bg-${(status === "Concluído") ? "success" : (status === "Em Progresso") ? "warning" : "danger"
                                         } text-color fs-6`
                                     }>
                                         {status}
@@ -378,16 +397,15 @@ function ContentPage() {
                                 </div>
 
                                 <div className="status-task-resp d-sm-flex d-md-none">
-                                <div className={
-                                        `badge bg-${
-                                            (status === "Concluído") ? "success" : (status === "Em Progresso") ? "warning" : "danger"
+                                    <div className={
+                                        `badge bg-${(status === "Concluído") ? "success" : (status === "Em Progresso") ? "warning" : "danger"
                                         } text-color fs-6 d-flex justify-content-center`
                                     }>
                                         <i className={
                                             `bi-${(status === "Concluído") ? "check" : (status === "Em Progresso") ? "arrow-clockwise" : "x"}`
                                         }></i>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         ))}

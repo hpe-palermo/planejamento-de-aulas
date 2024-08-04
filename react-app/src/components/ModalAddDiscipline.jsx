@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Modal = styled.div`
     & {
-        display: ${props => (props.active ? 'block' : 'none')};
+        /* display: ${props => (props.active ? 'block' : 'none')}; */
         background-color: rgba(0, 0, 0, 0.7);
     }
 
@@ -108,14 +108,17 @@ const Modal = styled.div`
     }
 `;
 
-function ModalAddDiscipline({ active, closeModal }) {
+function ModalAddDiscipline({ active, closeModal, setDisciplines }) {
 
+    const [nameDiscipline, setNameDiscipline] = useState('');
+    const [hoursDiscipline, setHoursDiscipline] = useState(0);
+    const [listContents, setListContents] = useState([]);
     const [days, setDays] = useState([
-        { day: 'S', state: false },
-        { day: 'T', state: false },
-        { day: 'Q', state: false },
-        { day: 'Q', state: false },
-        { day: 'S', state: false }
+        { day: 'S', full: 'Segunda', state: false },
+        { day: 'T', full: 'Terça', state: false },
+        { day: 'Q', full: 'Quarta', state: false },
+        { day: 'Q', full: 'Quinta', state: false },
+        { day: 'S', full: 'Sexta', state: false }
     ]);
 
     const toggleDaySelected = (index) => {
@@ -126,25 +129,34 @@ function ModalAddDiscipline({ active, closeModal }) {
         );
     };
 
-
-
-    const [listContents, setListContents] = useState([]);
-
     const addContent = () => {
-        let content = { id: listContents.length, content: '' };
+        let content = '';
         const newListContents = [...listContents, content];
         setListContents(newListContents);
-
         console.log('listContents');
         console.log(listContents);
     };
 
     const editContent = (index, value) => {
-        setListContents(contents => {
+        setListContents(contents =>
             contents.map((item, i) =>
-                i == index ? { ...item, content: vlr } : item
-            );
-        });
+                i === index ? value : item
+            )
+        );
+    };
+
+    const deleteContent = (index) => {
+        setListContents(listContents.filter((_, i) => i !== index));
+    };
+
+    const submitFormAddDiscipline = (e) => {
+        e.preventDefault();
+        console.log(`Name: ${nameDiscipline}`);
+        console.log(`Hours: ${hoursDiscipline}`);
+        console.log(`Days: ${days.filter(day => day.state).map(day => day.full)}`);
+        console.log(`Contents: ${listContents.map(content => content)}`);
+
+        setDisciplines(disciplines => [...disciplines, nameDiscipline]);
     };
 
 
@@ -157,15 +169,19 @@ function ModalAddDiscipline({ active, closeModal }) {
                         <i className="bi-x-circle"></i>
                     </div>
                 </div>
-                <form>
+                <form onSubmit={submitFormAddDiscipline}>
                     <div className="input-section mb-3 d-flex">
                         <label htmlFor="name-discipline" className="form-label me-2">Nome</label>
-                        <input type="text" className="form-control" id="name-discipline"
+                        <input
+                            onChange={(e) => { setNameDiscipline(e.target.value) }}
+                            type="text" className="form-control" id="name-discipline"
                             placeholder="Nome da Disciplina" />
                     </div>
                     <div className="input-section mb-3 d-flex">
                         <label htmlFor="hours-discipline" className="form-label me-2">CH</label>
-                        <input type="number" className="form-control" id="hours-discipline" placeholder="Carga Horária" />
+                        <input
+                            onChange={(e) => { setHoursDiscipline(e.target.value) }}
+                            type="number" className="form-control" id="hours-discipline" placeholder="Carga Horária" />
                     </div>
                     <div className="days-of-week d-flex justify-content-evenly mb-3">
                         {days.map((item, index) => (
@@ -184,15 +200,25 @@ function ModalAddDiscipline({ active, closeModal }) {
                             <div onClick={addContent} className="add-content fs-4" id="add-content">
                                 <i className="bi-plus-circle"></i>
                             </div>
-                            {listContents.map((content, index) => (
-                                <div className="content-displine d-flex mb-3">
-                                    <input type="text" id="content-discipline" class="form-control" placeholder="Conteúdo" />
-                                    <div class="del-content fs-4 ms-2"><i class="bi-dash-circle text-danger"></i></div>
-                                </div>
-                            ))}
                         </div>
                     </div>
-                    <div className="list-contents" id="list-contents"></div>
+                    <div className="list-contents" id="list-contents">
+                        {listContents.map((content, index) => (
+                            <div key={index} className="content-discipline d-flex mb-3">
+                                <input
+                                    type="text"
+                                    value={content}
+                                    onChange={(e) => editContent(index, e.target.value)}
+                                    id="content-discipline"
+                                    className="form-control"
+                                    placeholder="Conteúdo"
+                                />
+                                <div className="del-content fs-4 ms-2" onClick={() => deleteContent(index)}>
+                                    <i className="bi-dash-circle text-danger"></i>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                     <button type="submit" className="btn bg-primary-color text-color w-100 p-3">Salvar</button>
                 </form>
             </div>
