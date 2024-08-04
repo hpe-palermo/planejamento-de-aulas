@@ -22,7 +22,7 @@ const Modal = styled.div`
         cursor: pointer;
     }
 
-    .modal-content {
+    .modal-main {
         position: fixed;
         width: 400px;
         top: 50%;
@@ -32,7 +32,7 @@ const Modal = styled.div`
         border-radius: 10px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         z-index: 100;
-        background-color:  htmlFor=(--secondary-color);
+        background-color: #d2d2d2;
         color: #101010;
     }
 
@@ -67,6 +67,7 @@ const Modal = styled.div`
     .day-week:hover, .day-week.selected {
         background-color: #d2d2d2;
         color: #101010;
+        border-color: 1px solid #101010;
     }
 
     button {
@@ -108,7 +109,7 @@ const Modal = styled.div`
     }
 `;
 
-function ModalAddDiscipline({ active, closeModal, setDisciplines }) {
+function ModalAddDiscipline({ active, closeModal, disciplines, setDisciplines }) {
 
     const [nameDiscipline, setNameDiscipline] = useState('');
     const [hoursDiscipline, setHoursDiscipline] = useState(0);
@@ -156,13 +157,21 @@ function ModalAddDiscipline({ active, closeModal, setDisciplines }) {
         console.log(`Days: ${days.filter(day => day.state).map(day => day.full)}`);
         console.log(`Contents: ${listContents.map(content => content)}`);
 
-        setDisciplines(disciplines => [...disciplines, nameDiscipline]);
+        let newDiscipline = {
+            name: nameDiscipline,
+            creditHours: hoursDiscipline,
+            daysOfWeek: days.filter(day => day.state).map(day => day.full),
+            contents: listContents
+        };
+        setDisciplines(disciplines => [...disciplines, newDiscipline]);
+        console.log(disciplines);
+        closeModal();
     };
 
 
     return (
         <Modal className={`modal d-${active ? 'inline' : 'none'}`} id="modal">
-            <div className="modal-content">
+            <div className="modal-main">
                 <div className="modal-header d-flex justify-content-between align-items-center">
                     <h3>Adicionar Disciplina</h3>
                     <div onClick={closeModal} className="close-modal fs-4" id="close-modal">

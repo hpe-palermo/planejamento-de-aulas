@@ -182,15 +182,7 @@ const SectionTasks = styled.div`
     .task div:nth-child(1) {
         flex: 2;
     }
-
-    /* .status-task-full {
-        display: inline;
-    }
-
-    .status-task-resp {
-        display: none;
-    } */
-
+    
     @media (max-width: 768px) {
         
         .status-task-full {
@@ -232,27 +224,14 @@ const SectionTasks = styled.div`
     }
 `;
 
-function ContentPage({ disciplines, toggleModalTasks }) {
+function ContentPage({ disciplines, toggleModalTasks, tasks }) {
 
     const [nameMonth, setNameMonth] = useState('');
     const [weeksMonth, setWeeksMonth] = useState([]);
     const [numberDaysMonth, setNumberDaysMonth] = useState([]);
     const today = new Date();
-    const [tasks, setTasks] = useState([
-        { task: 'Revisar Álgebra', discipline: 'Matemática', date: '2024-08-09', status: 'Concluído' },
-        { task: 'Implementar Modelo Relacional', discipline: 'Banco de Dados', date: '2024-08-10', status: 'Pendente' },
-        { task: 'Desenvolver Classe Abstrata', discipline: 'POO', date: '2024-08-11', status: 'Em Progresso' },
-        { task: 'Configurar Autenticação', discipline: 'Django', date: '2024-08-12', status: 'Pendente' },
-        { task: 'Resolver Exercícios de Cálculo', discipline: 'Matemática', date: '2024-08-13', status: 'Concluído' },
-        { task: 'Otimizar Consultas SQL', discipline: 'Banco de Dados', date: '2024-08-14', status: 'Pendente' },
-        { task: 'Implementar Herança e Polimorfismo', discipline: 'POO', date: '2024-08-15', status: 'Pendente' },
-        { task: 'Desenvolver API com DRF', discipline: 'Django', date: '2024-08-16', status: 'Pendente' },
-        { task: 'Estudar Geometria', discipline: 'Matemática', date: '2024-08-17', status: 'Concluído' },
-        { task: 'Configurar Backup do Banco', discipline: 'Banco de Dados', date: '2024-08-18', status: 'Pendente' },
-        { task: 'Aplicar Padrões de Design', discipline: 'POO', date: '2024-08-19', status: 'Em Progresso' },
-        { task: 'Configurar Middleware', discipline: 'Django', date: '2024-08-20', status: 'Pendente' },
-    ]);
     const [tasksFiltered, setTasksFiltered] = useState([]);
+    const [optionFilter, setOptionFilter] = useState('all');
 
     const createCalendar = () => {
         const monthNames = [
@@ -288,24 +267,19 @@ function ContentPage({ disciplines, toggleModalTasks }) {
         setWeeksMonth(weeks);
     };
 
-    const createTasks = () => {
-        // code
-    }
-
     useEffect(createCalendar, []);
-    useEffect(createTasks, []);
+    
     useEffect(() => {
-        setTasksFiltered(tasks);
-    }, []);
-
-    const getOption = (e) => {
-        let option = e.target.value;
-        if (option == "all") {
+        if (optionFilter == "all") {
             setTasksFiltered(tasks);
         } else {
-            let newTasks = tasks.filter(task => task.discipline === e.target.value);
+            let newTasks = tasks.filter(task => task.discipline === optionFilter);
             setTasksFiltered(newTasks);
         }
+    }, [optionFilter, tasks]);
+
+    const getOption = (e) => {
+        setOptionFilter(e.target.value);
     };
 
     return (
@@ -364,7 +338,7 @@ function ContentPage({ disciplines, toggleModalTasks }) {
                             <select onChange={getOption}>
                                 <option value="all">Todas</option>
                                 {disciplines.map(discipline => (
-                                    <option value={discipline}>{discipline}</option>
+                                    <option value={discipline.name}>{discipline.name}</option>
                                 ))}
                             </select>
                         </div>

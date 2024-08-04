@@ -110,7 +110,7 @@ function SideBar({ active, closeSideBar, addDiscipline, disciplines }) {
             <ul className="container p-4 list-group d-flex text-center pt-2">
                 {disciplines.map((discipline, index) => (
                     <li key={index} className="list-group-item">
-                        {discipline}
+                        <a  className="nav-link" href={`/disciplines/${index}`}>{discipline.name}</a>
                     </li>
                 )
                 )}
