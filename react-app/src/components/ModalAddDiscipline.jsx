@@ -163,8 +163,10 @@ function ModalAddDiscipline({ active, closeModal, disciplines, setDisciplines })
             daysOfWeek: days.filter(day => day.state).map(day => day.full),
             contents: listContents
         };
-        setDisciplines(disciplines => [...disciplines, newDiscipline]);
-        console.log(disciplines);
+        
+        let newListDisciplines = [...disciplines, newDiscipline];
+        setDisciplines(newListDisciplines);
+        console.log(newListDisciplines);
         closeModal();
     };
 
