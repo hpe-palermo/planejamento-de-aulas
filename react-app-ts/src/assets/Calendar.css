@@ -1,5 +1,4 @@
 .calendar {
-    margin:10px;
     background-color: var(--secondary-color);
     border: 3px solid black;
 }
@@ -8,7 +7,6 @@
     display: flex;
     justify-content: space-between;
     margin: 0 20px; 
-    
 }
 
 .calendar-header .item-calendar-header {
@@ -28,7 +26,6 @@
 .calendar-body .days-week-name {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
     color: #d2d2d2;
 }
 
@@ -37,7 +34,7 @@
     flex: 1;
     text-align: center;
     padding: 10px;
-    border: 2px solid black;
+    border: 0px solid #fff;
 }
 
 .calendar-body .days-fs-letter {
@@ -51,13 +48,14 @@
 
 .day-of-month {
     flex: 1;
-    border: 2px solid var(--primary-color);
+    border: 0px solid var(--primary-color);
     height: 80px;
     display: flex;
     align-items: start;
     justify-content: end;
     padding: 10px 10px 0 0;
     cursor: pointer;
+    border: 1px solid black;
 }
 
 .day-of-month:hover {

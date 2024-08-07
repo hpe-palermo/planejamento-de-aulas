@@ -40,7 +40,7 @@ function Tasks() {
     };
 
     return (
-        <div className="item-content tasks">
+        <div className="item-content">
             <div className="tasks-title">
                 <div className="h2 p-3">Tarefas</div>
                 <div className="d-flex justify-content-between mx-5">
