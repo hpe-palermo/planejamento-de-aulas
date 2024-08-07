@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";    
 import '../assets/SideBar.css'
 
 function SideBar({ active, toggleSideBar, toggleModalAddDiscipline }) {

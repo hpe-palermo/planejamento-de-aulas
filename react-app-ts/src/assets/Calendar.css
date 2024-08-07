@@ -1,0 +1,87 @@
+.calendar {
+    margin:10px;
+    background-color: var(--secondary-color);
+    border: 3px solid black;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px; 
+    
+}
+
+.calendar-header .item-calendar-header {
+    display: flex;
+    align-items: center;
+}
+
+.calendar-header .item-calendar-header i {
+    cursor: pointer;
+}
+
+.calendar h2 {
+    padding: 10px;
+    text-align: center;
+}
+
+.calendar-body .days-week-name {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: #d2d2d2;
+}
+
+.day-week-name-item {
+    background-color: black;
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.calendar-body .days-fs-letter {
+    display: none;
+}
+
+.week-of-month {
+    display: flex;
+    justify-content: space-between;
+}
+
+.day-of-month {
+    flex: 1;
+    border: 2px solid var(--primary-color);
+    height: 80px;
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    padding: 10px 10px 0 0;
+    cursor: pointer;
+}
+
+.day-of-month:hover {
+    background-color: #d2d2d2;
+}
+
+.today {
+    background-color: #d2d2d2;
+}
+
+@media (max-width: 768px) {
+    .day-of-month {
+        flex: 1;
+        height: 50px;
+    }
+
+    .calendar-body .days-week-name {
+        display: none;
+    }
+
+    .calendar-body .days-fs-letter {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        color: #d2d2d2;
+    }
+}

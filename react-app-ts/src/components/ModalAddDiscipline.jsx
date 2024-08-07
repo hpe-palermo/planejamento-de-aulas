@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import { FaPlus } from "react-icons/fa";
+import { BsDashCircle } from "react-icons/bs";
 import '../assets/ModalAddDiscipline.css'
 
 function ModalAddDiscipline({ active, closeModal }) {
 
     const [disciplines, setDisciplines] = useState([
-        {name: 'Banco de Dados', creditsHours: 80, daysOfWeek: ['Terça', 'Quinta'], content: ['content 1', 'content 2', 'content 3']}
+        { name: 'Banco de Dados', creditsHours: 80, daysOfWeek: ['Terça', 'Quinta'], content: ['content 1', 'content 2', 'content 3'] }
     ]);
 
     const [nameDiscipline, setNameDiscipline] = useState('');
@@ -60,7 +62,7 @@ function ModalAddDiscipline({ active, closeModal }) {
             daysOfWeek: days.filter(day => day.state).map(day => day.full),
             contents: listContents
         };
-        
+
         let newListDisciplines = [...disciplines, newDiscipline];
         setDisciplines(newListDisciplines);
         console.log(newListDisciplines);
@@ -103,31 +105,32 @@ function ModalAddDiscipline({ active, closeModal }) {
                         ))}
                     </div>
                     <div className="modal-footer">
-                        <div className="footer-header d-flex justify-content-between">
+                        <div className="footer-header">
                             <h4>Conteúdos</h4>
                             <div onClick={addContent} className="add-content fs-4" id="add-content">
-                                <i className="bi-plus-circle"></i>
+                                <FaPlus />
                             </div>
                         </div>
                     </div>
                     <div className="list-contents" id="list-contents">
                         {listContents.map((content, index) => (
-                            <div key={index} className="content-discipline d-flex mb-3">
+                            <div key={index} className="content-discipline">
                                 <input
                                     type="text"
                                     value={content}
                                     onChange={(e) => editContent(index, e.target.value)}
-                                    id="content-discipline"
                                     className="form-control"
                                     placeholder="Conteúdo"
                                 />
                                 <div className="del-content fs-4 ms-2" onClick={() => deleteContent(index)}>
-                                    <i className="bi-dash-circle text-danger"></i>
+                                    <BsDashCircle size={20} color="red" />
                                 </div>
                             </div>
                         ))}
                     </div>
-                    <button type="submit" className="btn bg-primary-color text-color w-100 p-3">Salvar</button>
+                    <div className="container-btn">
+                        <button type="submit">Salvar</button>
+                    </div>
                 </form>
             </div>
         </div>

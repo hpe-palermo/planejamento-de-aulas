@@ -1,0 +1,117 @@
+:root {
+    --primary-color: #101010;
+    --secondary-color: #838383;
+    --tertiary-color: #d2d2d2;
+}
+
+.tasks {
+    background-color: var(--secondary-color);
+    color: var(--tertiary-color);
+    border-radius: 15px;
+    border: 3px solid var(--primary-color);
+    height: 100vh;
+}
+
+.tasks-title {
+    background-color: var(--primary-color);
+    padding: 3px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.list-tasks {
+    padding: 20px;
+}
+
+.list-tasks-header {
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    gap: 2px;
+}
+
+.list-tasks-header div {
+    flex: 1;
+    padding: 5px;
+    text-align: center;
+}
+
+.list-tasks-header div:nth-child(1) {
+    flex: 2;
+}
+
+.task {
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    gap: 2px;
+    border: 2px solid var(--primary-color);
+}
+
+.task div {
+    background-color: var(--secondary-color);
+    flex: 1;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task div:nth-child(1) {
+    flex: 2;
+}
+
+.status-task-resp {
+    display: none;
+}
+
+@media (max-width: 1023px) {
+
+    /* .status-task-full {
+        display: none;
+    }
+
+    .status-task-resp {
+        display: flex;
+        justify-content: center;
+    } */
+
+    .task div {
+        background-color: var(--secondary-color);
+        width: 30%;
+        padding: 5px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .task div:nth-child(1) {
+        width: 40%;
+    }
+}
+
+.filter select {
+    padding: 5px;
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    border-radius: 5px;
+}
+
+.btn-add-tasks {
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    border-color: 1px solid var(--tertiary-color);
+    cursor: pointer;
+}
+
+.label-color-green {
+    background-color: green;
+    color: white;
+
+}
+
+.label-color-red {
+    background-color: red;
+    color: white;
+}
