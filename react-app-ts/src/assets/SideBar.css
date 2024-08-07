@@ -1,0 +1,86 @@
+.sidebar {
+    background-color: #101010;
+    width: 350px;
+    height: calc(100vh - 72px);
+}
+
+.icon-x {
+    display: none;
+}
+
+.ctn-button-add {
+    margin: 0 20px;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ctn-button-add button {
+    background-color: transparent;
+    color: #dddcdc;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #dddcdc;
+    outline: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    margin-left: -10px;
+    height: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color .5s;
+}
+
+.ctn-button-add button:hover {
+    background-color: #dddcdc;
+    color: #101010;
+}
+
+.list-disciplines {
+    margin-top: 20px;
+    border-top: 2px solid #dddcdc;
+    padding-top: 20px;
+}
+
+.list-disciplines li {
+    background-color: #838383;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 0 10px;
+    margin-bottom: 10px;
+    transition: background-color .2s;
+}
+
+.list-disciplines li:hover {
+    background-color: #dddcdc;
+    cursor: pointer;
+}
+
+@media (max-width: 1023px) {
+    .sidebar {
+        position: absolute;
+        top: 0;
+        height: 100vh;
+        transform: translateX(-350px);
+        transition: .5s;
+    }
+
+    .sidebar.active {
+        position: absolute;
+        top: 0;
+        height: 100vh;
+        transform: translateX(0px);
+    }
+
+    .icon-x {
+        padding: 10px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        display: flex;
+        justify-content: end;
+    }
+}

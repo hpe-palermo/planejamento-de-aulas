@@ -1,0 +1,7 @@
+.container {
+    background-color: #dddcdc;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    font-family: 'Mooli';
+}
