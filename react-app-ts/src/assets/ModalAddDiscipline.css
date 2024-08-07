@@ -1,0 +1,133 @@
+.modal {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 100vh;
+    width: 100vw;
+    display: inline; /* none */
+}
+
+.modal.active {
+    display: inline;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    color: #101010;
+}
+
+form {
+    box-shadow: 0 0;
+}
+
+
+.close-modal {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.modal-main {
+    position: fixed;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    background-color: #d2d2d2;
+    color: #101010;
+}
+
+.input-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.input-section input {
+    position: absolute;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+}
+
+.input-section label {
+    position: absolute;
+    left: 0;
+    width: 200px;
+}
+
+.days-of-week {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px 0;
+}
+
+.day-week {
+    aspect-ratio: 1 / 1;
+    height: 35px;
+    background-color: #101010;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    border-color: 3px solid #101010;
+}
+
+.day-week:hover,
+.day-week.selected {
+    background-color: #fff;
+    color: #101010;
+}
+
+button {
+    background-color: #101010;
+    color: #fff;
+}
+
+button:hover {
+    border: 1px solid #101010;
+    color: #101010;
+    background-color: #d2d2d2;
+}
+
+.modal-footer {
+    border: none;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.footer-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-content {
+    cursor: pointer;
+}
+
+.list-contents {
+    max-height: 80px;
+    overflow-y: auto;
+}
+
+.content-displine {
+    margin-bottom: 15px;
+    display: flex;
+}

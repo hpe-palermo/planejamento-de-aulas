@@ -60,6 +60,11 @@
     cursor: pointer;
 }
 
+.list-disciplines li a {
+    text-decoration: none;
+    color: #101010;
+}
+
 @media (max-width: 1023px) {
     .sidebar {
         position: absolute;

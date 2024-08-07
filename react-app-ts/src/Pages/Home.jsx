@@ -1,19 +1,36 @@
 import React, { useState } from "react";
-import '../assets/Home.css'
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
+import Calendar from "../components/Calendar";
+import Tasks from "../components/Tasks";
+import '../assets/Home.css'
+import ModalAddDiscipline from "../components/ModalAddDiscipline";
 
 function Home() {
 
     const [sidebarActive, setSidebarActive] = useState(false);
+    const [modalAddDisciplineActive, setModalAddDisciplineActive] = useState(false);
+
     const toggleSideBar = () => {
         setSidebarActive(!sidebarActive);
     };
 
+    const toggleModalAddDiscipline = () => {
+        setModalAddDisciplineActive(!modalAddDisciplineActive);
+    };
+
+
     return (
         <div>
             <NavBar toggleSideBar={toggleSideBar} />
-            <SideBar active={sidebarActive} toggleSideBar={toggleSideBar} />
+            <div className="content-page">
+                <ModalAddDiscipline active={modalAddDisciplineActive} closeModal={toggleModalAddDiscipline} />
+                <SideBar active={sidebarActive} toggleSideBar={toggleSideBar} toggleModalAddDiscipline={toggleModalAddDiscipline} />
+                <div className="contents-page">
+                    <Calendar className="content" />
+                    <Tasks className="content" />
+                </div>
+            </div>
         </div>
     );
 }
