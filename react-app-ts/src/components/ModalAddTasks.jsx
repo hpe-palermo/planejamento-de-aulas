@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import '../assets/ModalAddTasks.css';
 import { IoMdClose } from "react-icons/io";
+import '../assets/ModalAddTasks.css';
 
 function ModalAddTasks({ active, closeModal }) {
 

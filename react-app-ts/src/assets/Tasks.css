@@ -38,7 +38,7 @@
     justify-content: space-between;
 }
 
-.container-filter-add .filter select{
+.container-filter-add .filter select {
     background-color: var(--primary-color);
     color: var(--tertiary-color);
     padding: 10px;
@@ -49,7 +49,7 @@
 .container-filter-add .btn-add-tasks {
     background-color: var(--primary-color);
     color: var(--tertiary-color);
-    padding:10px;
+    padding: 10px;
     border-radius: 10px;
     border: 1px solid var(--primary-color);
     outline: none;
@@ -62,7 +62,6 @@
 
 .tasks {
     border: 3px solid var(--primary-color);
-
 }
 
 .task {
@@ -82,6 +81,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /* nao aparece reticencias(por enquanto) */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .status-task-full {
@@ -103,6 +106,67 @@ div[class^='label-color'] {
 .label-color-red {
     background-color: red !important;
 }
+
+.modal-info-back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-info-back.active {
+    display: flex;
+}
+
+.modal-info {
+    background-color: var(--tertiary-color);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: end;
+}
+
+.modal-info-title {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: start;
+}
+
+.input-section {
+    display: flex !important;
+    justify-content: space-between !important;
+    margin: 0;
+}
+
+.input-section label {
+    text-align: start;
+}
+
+.btn-save-edit, .btn-del {
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--primary-color);
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.btn-del {
+    background-color: red;
+    border: 1px solid red;
+}
+
 
 @media (max-width: 768px) {
     .task div {

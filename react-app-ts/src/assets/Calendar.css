@@ -6,7 +6,7 @@
 .calendar-header {
     display: flex;
     justify-content: space-between;
-    margin: 0 20px; 
+    margin: 0 20px;
 }
 
 .calendar-header .item-calendar-header {
@@ -56,7 +56,18 @@
     padding: 10px 10px 0 0;
     cursor: pointer;
     border: 1px solid black;
+    position: relative;
 }
+
+/* .tasks-day-label {
+    position: absolute;
+    top: 30px;
+    padding: 5px;
+    border-radius: 10px;
+    width: calc(100% - 15px);
+    font-size: 12px;
+    background-color: red;
+} */
 
 .day-of-month:hover {
     background-color: #d2d2d2;
@@ -70,6 +81,7 @@
     .day-of-month {
         flex: 1;
         height: 50px;
+        padding: 5px 5px 0 0;
     }
 
     .calendar-body .days-week-name {

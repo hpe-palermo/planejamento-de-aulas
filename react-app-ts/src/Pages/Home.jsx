@@ -3,9 +3,9 @@ import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 import Calendar from "../components/Calendar";
 import Tasks from "../components/Tasks";
-import '../assets/Home.css'
 import ModalAddDiscipline from "../components/ModalAddDiscipline";
 import ModalAddTasks from "../components/ModalAddTasks";
+import '../assets/Home.css'
 
 function Home() {
 

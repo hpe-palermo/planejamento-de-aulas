@@ -6,6 +6,8 @@ import '../assets/Tasks.css';
 function Tasks({ toggleModalAddTasks }) {
 
     const [modalTasksActive, setModalTasksActive] = useState(false);
+    const [modalInfoActive, setModalInfoActive] = useState(false);
+    const [indexTasksModal, setIndexTaksModal] = useState(0);
 
     const toggleModalTasks = () => {
         setModalTasksActive(!modalTasksActive);
@@ -40,6 +42,15 @@ function Tasks({ toggleModalAddTasks }) {
         setOptionFilter(e.target.value);
     };
 
+    const toggleOpenModalInfo = (index) => {
+        setModalInfoActive(!modalInfoActive);
+        if (index !== -1) {
+            setIndexTaksModal(index);
+            console.log('toggle modal info');
+            console.log(tasks[index]);
+        }
+    };
+
     return (
         <div className="item-content-tasks">
             <div className="tasks-title">
@@ -68,9 +79,47 @@ function Tasks({ toggleModalAddTasks }) {
                     <div>Data</div>
                     <div>Status</div>
                 </div>
+                <div className={`modal-info-back${modalInfoActive ? ' active' : ''}`}>
+                    <div className="modal-info">
+                        <div className="close-modal-info" onClick={() => toggleOpenModalInfo(-1)}>
+                            <IoMdClose size={25} className="icon-close" />
+                        </div>
+                        <div className="modal-info-title">
+                            <h1>Editar</h1>
+                        </div>
+                        <div className="modal-info-content">
+                            <form>
+                                <div className="input-section">
+                                    <label htmlFor="taskDescription">Descrição</label>
+                                    <input
+                                        // onChange={(e) => getDescription(e.target.value)}
+                                        className="form-control ms-2" value={tasks[indexTasksModal].task} type="text" name="taskDescription" placeholder="Descrição" />
+                                </div>
+                                <div className="input-section">
+                                    <label htmlFor="">Dsciplina</label>
+                                    <select onChange={getOption}>
+                                        {disciplines.map(discipline => (
+                                            discipline.name == tasks[indexTasksModal].discipline
+                                            ? <option value={discipline.name} selected>{discipline.name}</option>
+                                            : <option value={discipline.name}>{discipline.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="input-section">
+                                    <label htmlFor="">Data</label>
+                                    <input
+                                        onChange={(e) => getDate(e.target.value)}
+                                        className="form-control ms-2" type="date" value={tasks[indexTasksModal].date} />
+                                </div>
+                                <a className="btn-del" type="submit">Excluir</a>
+                                <button className="btn-save-edit" type="submit">Salvar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div className="tasks">
                     {tasksFiltered.map(({ task, discipline, date, status }, index) => (
-                        <div key={index} className="task">
+                        <div key={index} className="task" onClick={() => toggleOpenModalInfo(index)}>
                             <div className="name-task">{task}</div>
                             <div className="discipline-task">{discipline}</div>
                             <div className="date-task">{date}</div>

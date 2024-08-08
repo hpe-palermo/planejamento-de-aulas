@@ -8,6 +8,12 @@ function Calendar() {
     const [numberDaysMonth, setNumberDaysMonth] = useState([]);
     const today = new Date();
 
+    const [tasks, setTasks] = useState([
+        { task: "Estudar JavaScript", discipline: "Programação", status: false, date: '2024-08-15' },
+        { task: "Ler um livro", discipline: "Leitura", status: true, date: '2024-08-21' },
+        { task: "Tomar café", discipline: "Saúde", status: false, date: '2024-08-29' },
+    ]);
+
     const createCalendar = () => {
         const monthNames = [
             "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
@@ -46,50 +52,52 @@ function Calendar() {
 
     return (
         <div className="calendar rounded-3 mb-3 p-0" id="calendar">
-                <div className="calendar-header">
-                    <div className="item-calendar-header">
-                        <i className="bi-chevron-left fs-3"></i>
-                    </div>
-                    <div className="item-calendar-header">
-                        <h2>{nameMonth}</h2>
-                    </div>
-
-                    <div className="item-calendar-header">
-                        <i className="bi-chevron-right fs-3"></i>
-                    </div>
+            <div className="calendar-header">
+                <div className="item-calendar-header">
+                    <i className="bi-chevron-left fs-3"></i>
                 </div>
-                <div className="calendar-body">
-                    <div className="days-week-name">
-                        <div className="day-week-name-item">Dom</div>
-                        <div className="day-week-name-item">Seg</div>
-                        <div className="day-week-name-item">Ter</div>
-                        <div className="day-week-name-item">Qua</div>
-                        <div className="day-week-name-item">Qui</div>
-                        <div className="day-week-name-item">Sex</div>
-                        <div className="day-week-name-item">Sáb</div>
-                    </div>
-                    <div className="days-fs-letter">
-                        <div className="day-week-name-item">D</div>
-                        <div className="day-week-name-item">S</div>
-                        <div className="day-week-name-item">T</div>
-                        <div className="day-week-name-item">Q</div>
-                        <div className="day-week-name-item">Q</div>
-                        <div className="day-week-name-item">S</div>
-                        <div className="day-week-name-item">S</div>
-                    </div>
-                    <div className="days-of-month" id="days-of-month">
-                        {weeksMonth.map((week, i) =>
-                        (<div key={i} className="week-of-month">
-                            {week.map((day, index) => (
-                                <div key={index} className={`day-of-month ${day === today.getDate() ? 'today' : ''}`}>
-                                    <div>{day}</div>
-                                </div>
-                            ))}
-                        </div>)
-                        )}
-                    </div>
+                <div className="item-calendar-header">
+                    <h2>{nameMonth}</h2>
+                </div>
+
+                <div className="item-calendar-header">
+                    <i className="bi-chevron-right fs-3"></i>
                 </div>
             </div>
+            <div className="calendar-body">
+                <div className="days-week-name">
+                    <div className="day-week-name-item">Dom</div>
+                    <div className="day-week-name-item">Seg</div>
+                    <div className="day-week-name-item">Ter</div>
+                    <div className="day-week-name-item">Qua</div>
+                    <div className="day-week-name-item">Qui</div>
+                    <div className="day-week-name-item">Sex</div>
+                    <div className="day-week-name-item">Sáb</div>
+                </div>
+                <div className="days-fs-letter">
+                    <div className="day-week-name-item">D</div>
+                    <div className="day-week-name-item">S</div>
+                    <div className="day-week-name-item">T</div>
+                    <div className="day-week-name-item">Q</div>
+                    <div className="day-week-name-item">Q</div>
+                    <div className="day-week-name-item">S</div>
+                    <div className="day-week-name-item">S</div>
+                </div>
+                <div className="days-of-month" id="days-of-month">
+                    {weeksMonth.map((week, i) =>
+                    (<div key={i} className="week-of-month">
+                        {week.map((day, index) => (
+                            <div key={index} className={`day-of-month ${day === today.getDate() ? 'today' : ''}`}>
+                                <div>{day}</div>
+                                {/* <div className="tasks-day-label">bah</div> */}
+                                {/* tasks */}
+                            </div>
+                        ))}
+                    </div>)
+                    )}
+                </div>
+            </div>
+        </div>
     );
 }
 
