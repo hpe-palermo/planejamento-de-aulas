@@ -5,11 +5,17 @@ import Calendar from "../components/Calendar";
 import Tasks from "../components/Tasks";
 import '../assets/Home.css'
 import ModalAddDiscipline from "../components/ModalAddDiscipline";
+import ModalAddTasks from "../components/ModalAddTasks";
 
 function Home() {
 
     const [sidebarActive, setSidebarActive] = useState(false);
     const [modalAddDisciplineActive, setModalAddDisciplineActive] = useState(false);
+    const [modalAddTasksActive, setModalAddTasksActive] = useState(false);
+
+    const toggleModalAddTasks = () => {
+        setModalAddTasksActive(!modalAddTasksActive);
+    };
 
     const toggleSideBar = () => {
         setSidebarActive(!sidebarActive);
@@ -28,7 +34,8 @@ function Home() {
                 <SideBar active={sidebarActive} toggleSideBar={toggleSideBar} toggleModalAddDiscipline={toggleModalAddDiscipline} />
                 <div className="contents-page">
                     <Calendar className="content" />
-                    <Tasks className="content" />
+                    <ModalAddTasks active={modalAddTasksActive} closeModal={toggleModalAddTasks} />
+                    <Tasks className="content" toggleModalAddTasks={toggleModalAddTasks} />
                 </div>
             </div>
         </div>

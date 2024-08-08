@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { IoMdClose, IoMdCheckmark } from "react-icons/io";
+import { FaPlus } from "react-icons/fa";
 import '../assets/Tasks.css';
 
-function Tasks() {
+function Tasks({ toggleModalAddTasks }) {
 
     const [modalTasksActive, setModalTasksActive] = useState(false);
 
@@ -40,21 +41,23 @@ function Tasks() {
     };
 
     return (
-        <div className="item-content">
+        <div className="item-content-tasks">
             <div className="tasks-title">
-                <div className="h2 p-3">Tarefas</div>
-                <div className="d-flex justify-content-between mx-5">
+                <h2>Tarefas</h2>
+                <div className="container-filter-add">
                     <div className="filter">
                         <span className="me-2">Disciplinas</span>
                         <select onChange={getOption}>
                             <option value="all">Todas</option>
-                            {disciplines.map(discipline => (
-                                <option value={discipline.name}>{discipline.name}</option>
+                            {disciplines.map((discipline, index) => (
+                                <option key={index} value={discipline.name}>{discipline.name}</option>
                             ))}
                         </select>
                     </div>
-                    <button onClick={toggleModalTasks} className="btn-add-tasks btn p-2 mb-3">
-                        <i className="bi-plus-circle"></i> <span className="d-md-inline d-none">Adicionar Tarefa</span>
+                    <button onClick={toggleModalAddTasks} className="btn-add-tasks">
+                        <i className="bi-plus-circle"></i> <span className="d-md-inline d-none">
+                            <FaPlus /> <span>Adicionar Tarefa</span>
+                        </span>
                     </button>
                 </div>
             </div>
@@ -66,8 +69,8 @@ function Tasks() {
                     <div>Status</div>
                 </div>
                 <div className="tasks">
-                    {tasksFiltered.map(({ task, discipline, date, status }) => (
-                        <div className="task">
+                    {tasksFiltered.map(({ task, discipline, date, status }, index) => (
+                        <div key={index} className="task">
                             <div className="name-task">{task}</div>
                             <div className="discipline-task">{discipline}</div>
                             <div className="date-task">{date}</div>
@@ -80,7 +83,7 @@ function Tasks() {
 
                             <div className="status-task-resp">
                                 <div className={`label-color-${status ? 'green' : 'red'}`}>
-                                    {status ? <IoMdCheckmark size={25} /> : <IoMdClose size={25} />}
+                                    {status ? <IoMdCheckmark className="icon-status" /> : <IoMdClose className="icon-status" />}
                                 </div>
                             </div>
                         </div>

@@ -4,3 +4,120 @@
     --tertiary-color: #d2d2d2;
 }
 
+.item-content-tasks {
+    margin-top: 20px;
+}
+
+.list-tasks-header {
+    background-color: var(--tertiary-color);
+    display: flex;
+}
+
+.list-tasks-header div {
+    background-color: var(--primary-color);
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    color: var(--tertiary-color);
+    font-weight: bold;
+}
+
+.tasks-title {
+    padding: 20px;
+    border: 3px solid var(--primary-color);
+}
+
+.tasks-title h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container-filter-add {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-filter-add .filter select{
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+.container-filter-add .btn-add-tasks {
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    padding:10px;
+    border-radius: 10px;
+    border: 1px solid var(--primary-color);
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    margin-left: -10px;
+}
+
+.tasks {
+    border: 3px solid var(--primary-color);
+
+}
+
+.task {
+    background-color: var(--primary-color);
+    display: flex;
+    gap: 3px;
+    border: 1px solid var(--primary-color);
+}
+
+.task div {
+    background-color: var(--secondary-color);
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    color: var(--tertiary-color);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status-task-full {
+    display: inline !important;
+}
+
+.status-task-resp {
+    display: none !important;
+}
+
+div[class^='label-color'] {
+    border-radius: 15px;
+}
+
+.label-color-green {
+    background-color: green !important;
+}
+
+.label-color-red {
+    background-color: red !important;
+}
+
+@media (max-width: 768px) {
+    .task div {
+        /* ellipsi (to do) */
+    }
+
+    .icon-status {
+        font-size: 18px;
+    }
+
+    .status-task-full {
+        display: none !important;
+    }
+
+    .status-task-resp {
+        display: inline !important;
+    }
+}

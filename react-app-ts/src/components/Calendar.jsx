@@ -45,7 +45,7 @@ function Calendar() {
     useEffect(createCalendar, []);
 
     return (
-        <div className="item-content calendar rounded-3 mb-3 p-0" id="calendar">
+        <div className="calendar rounded-3 mb-3 p-0" id="calendar">
                 <div className="calendar-header">
                     <div className="item-calendar-header">
                         <i className="bi-chevron-left fs-3"></i>
@@ -78,8 +78,8 @@ function Calendar() {
                         <div className="day-week-name-item">S</div>
                     </div>
                     <div className="days-of-month" id="days-of-month">
-                        {weeksMonth.map(week =>
-                        (<div className="week-of-month">
+                        {weeksMonth.map((week, i) =>
+                        (<div key={i} className="week-of-month">
                             {week.map((day, index) => (
                                 <div key={index} className={`day-of-month ${day === today.getDate() ? 'today' : ''}`}>
                                     <div>{day}</div>

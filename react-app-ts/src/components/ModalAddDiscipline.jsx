@@ -81,17 +81,17 @@ function ModalAddDiscipline({ active, closeModal }) {
                 </div>
                 <form onSubmit={submitFormAddDiscipline}>
                     <div className="input-section">
-                        <label htmlFor="name-discipline" className="form-label me-2">Nome</label>
+                        <label htmlFor="name-discipline">Nome</label>
                         <input
                             onChange={(e) => { setNameDiscipline(e.target.value) }}
-                            type="text" className="form-control" id="name-discipline"
+                            type="text" id="name-discipline"
                             placeholder="Nome da Disciplina" />
                     </div>
                     <div className="input-section">
-                        <label htmlFor="hours-discipline" className="form-label me-2">CH</label>
+                        <label htmlFor="hours-discipline">CH</label>
                         <input
                             onChange={(e) => { setHoursDiscipline(e.target.value) }}
-                            type="number" className="form-control" id="hours-discipline" placeholder="Carga Horária" />
+                            type="number" id="hours-discipline" placeholder="Carga Horária" />
                     </div>
                     <div className="days-of-week">
                         {days.map((item, index) => (
