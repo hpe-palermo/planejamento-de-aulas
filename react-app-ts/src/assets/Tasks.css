@@ -100,11 +100,11 @@ div[class^='label-color'] {
 }
 
 .label-color-green {
-    background-color: green !important;
+    background-color: #20d620 !important;
 }
 
 .label-color-red {
-    background-color: red !important;
+    background-color: #d62020 !important;
 }
 
 .modal-info-back {

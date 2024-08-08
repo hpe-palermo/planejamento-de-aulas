@@ -1,3 +1,42 @@
+.modal-day-tasks {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-day-tasks.active {
+    display: flex;
+}
+
+.modal-day-tasks .day-tasks {
+    background-color: #fff;
+    padding: 20px;
+    width: 300px;
+    height: 300px;
+}
+
+.modal-day-tasks .day-tasks div {
+}
+
+
+.list-tasks-day {
+    padding-left: 20px;
+    padding-top: 5px;
+    height: 130px;
+    overflow-y: auto;
+    border: 1px solid #101010;
+    border-radius: 10px;
+}
+
+
+
 .calendar {
     background-color: var(--secondary-color);
     border: 3px solid black;
@@ -49,7 +88,7 @@
 .day-of-month {
     flex: 1;
     border: 0px solid var(--primary-color);
-    height: 80px;
+    height: 100px;
     display: flex;
     align-items: start;
     justify-content: end;
@@ -59,15 +98,28 @@
     position: relative;
 }
 
-/* .tasks-day-label {
+.list-labels {
     position: absolute;
     top: 30px;
-    padding: 5px;
-    border-radius: 10px;
     width: calc(100% - 15px);
     font-size: 12px;
-    background-color: red;
-} */
+    height: 60px;
+}
+
+.list-labels .task-item {
+    background-color: #c2a335;
+    padding: 3px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.list-labels .task-item.completed {
+    background-color: #5cb85c;
+}
+
+.list-labels .task-item.pendent {
+    background-color: #b85c5c;
+}
 
 .day-of-month:hover {
     background-color: #d2d2d2;
@@ -75,6 +127,14 @@
 
 .today {
     background-color: #d2d2d2;
+}
+
+.label-full {
+    display: inline;
+}
+
+.label-resp {
+    display: none;
 }
 
 @media (max-width: 768px) {
@@ -93,5 +153,20 @@
         justify-content: space-between;
         flex-wrap: wrap;
         color: #d2d2d2;
+    }
+
+    .label-full {
+        display: none;
+    }
+
+    .label-resp {
+        display: inline;
+        font-size: 12px;
+    }
+
+    .label-resp .task-item {
+        padding: 0px;
+        font-size: 15px;
+        text-align: center;
     }
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import '../assets/Calendar.css';
+import { IoMdClose } from "react-icons/io";
 
 function Calendar() {
 
@@ -10,9 +11,37 @@ function Calendar() {
 
     const [tasks, setTasks] = useState([
         { task: "Estudar JavaScript", discipline: "Programação", status: false, date: '2024-08-15' },
+        { task: "Estudar Python", discipline: "Programação", status: true, date: '2024-08-01' },
+        { task: "Estudar Django", discipline: "Programação", status: false, date: '2024-08-15' },
+        { task: "Estudar Django", discipline: "Programação", status: false, date: '2024-08-15' },
+        { task: "Estudar Django", discipline: "Programação", status: false, date: '2024-08-15' },
+        { task: "Estudar Django", discipline: "Programação", status: false, date: '2024-08-15' },
+        { task: "Estudar Django", discipline: "Programação", status: false, date: '2024-08-15' },
+        { task: "Estudar Django", discipline: "Programação", status: false, date: '2024-08-15' },
+        { task: "Estudar Django", discipline: "Programação", status: false, date: '2024-08-15' },
         { task: "Ler um livro", discipline: "Leitura", status: true, date: '2024-08-21' },
         { task: "Tomar café", discipline: "Saúde", status: false, date: '2024-08-29' },
     ]);
+
+    const [objectsDays, setObjectsDays] = useState([]);
+
+    const [indexModalDay, setIndexModalDay] = useState(0);
+    const [dayModalActive, setDayModalActive] = useState(false);
+
+    useEffect(() => {
+        let newObjectDays = Array(42).fill().map(() => []);
+
+        for (let task of tasks) {
+            let day = parseInt(task.date.split('-')[2]);
+
+            if (day >= 1 && day <= 42) {
+                newObjectDays[day - 1].push(task);
+            }
+        }
+
+        setObjectsDays(newObjectDays);
+    }, [tasks]);
+
 
     const createCalendar = () => {
         const monthNames = [
@@ -50,8 +79,22 @@ function Calendar() {
 
     useEffect(createCalendar, []);
 
+    const openModalDay = (index) => {
+        setIndexModalDay(index);
+        toggleOpenModalDay();
+        console.log('openModalDay:', index);
+        console.log(objectsDays[index - 1].map(
+            task => console.log('task:', task.task)
+        ));
+    };
+
+    const toggleOpenModalDay = () => {
+        setDayModalActive(!dayModalActive);
+    };
+
+
     return (
-        <div className="calendar rounded-3 mb-3 p-0" id="calendar">
+        <div className="calendar" id="calendar">
             <div className="calendar-header">
                 <div className="item-calendar-header">
                     <i className="bi-chevron-left fs-3"></i>
@@ -83,14 +126,62 @@ function Calendar() {
                     <div className="day-week-name-item">S</div>
                     <div className="day-week-name-item">S</div>
                 </div>
+                <div className={`modal-day-tasks ${dayModalActive ? 'active' : ''}`}>
+                    <div className="day-tasks">
+                        <div style={{ textAlign: 'end' }} onClick={() => toggleOpenModalDay(-1)}>
+                            <IoMdClose size={25} className="icon-close" />
+                        </div>
+                        <div>
+                            <h1>Dia {indexModalDay}</h1>
+                        </div>
+                        <div style={{ marginTop: '10px' }}>
+                            <h2>Tarefas</h2>
+                        </div>
+                        <div>
+                            <ul className="list-tasks-day">
+                                {objectsDays[indexModalDay - 1] && objectsDays[indexModalDay - 1].length > 0 ? (
+                                    objectsDays[indexModalDay - 1].map((task, index) => (
+                                        <li key={index}>{task.task}</li>
+                                    ))
+                                ) : (
+                                    <div style={{ textAlign: 'center' }}>Nenhuma tarefa para este dia.</div>
+                                )}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
                 <div className="days-of-month" id="days-of-month">
                     {weeksMonth.map((week, i) =>
                     (<div key={i} className="week-of-month">
                         {week.map((day, index) => (
-                            <div key={index} className={`day-of-month ${day === today.getDate() ? 'today' : ''}`}>
+                            <div key={index} onClick={() => openModalDay(day)} className={`day-of-month ${day === today.getDate() ? 'today' : ''}`}>
                                 <div>{day}</div>
-                                {/* <div className="tasks-day-label">bah</div> */}
-                                {/* tasks */}
+                                {
+                                    day ?
+                                        <div className="list-labels">
+                                            <div className="label-full">
+                                                {
+                                                    objectsDays[day - 1].length > 2 ?
+                                                        <div className="task-item">ver mais...</div> :
+                                                        objectsDays[day - 1].map((task, index) => (
+                                                            <div key={day} className={`task-item ${task.status ? 'completed' : 'pendent'}`}>
+                                                                {task.task}
+                                                            </div>
+                                                        ))
+                                                }
+                                            </div>
+                                            <div className="label-resp">
+                                                {
+                                                    objectsDays[day - 1].length > 0 ?
+                                                        <div key={day} onClick={() => openModalDay(day)} className="task-item">...</div> :
+                                                        <div></div>
+                                                }
+                                            </div>
+
+                                        </div>
+                                        : <div></div>
+                                }
                             </div>
                         ))}
                     </div>)
