@@ -51,6 +51,12 @@ function Tasks({ toggleModalAddTasks }) {
         }
     };
 
+    const confirmDelete = (index) => {
+        if (confirm(`Tem certeza que deseja excluir a tarefa "${tasks[index].task}"?`)) {
+            alert("Deleting...");
+        }
+    };
+
     return (
         <div className="item-content-tasks">
             <div className="tasks-title">
@@ -111,7 +117,7 @@ function Tasks({ toggleModalAddTasks }) {
                                         onChange={(e) => getDate(e.target.value)}
                                         className="form-control ms-2" type="date" value={tasks[indexTasksModal].date} />
                                 </div>
-                                <a className="btn-del" type="submit">Excluir</a>
+                                <a onClick={() => confirmDelete(indexTasksModal)} className="btn-del" type="submit">Excluir</a>
                                 <button className="btn-save-edit" type="submit">Salvar</button>
                             </form>
                         </div>

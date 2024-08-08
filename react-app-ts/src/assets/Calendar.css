@@ -18,13 +18,10 @@
 .modal-day-tasks .day-tasks {
     background-color: #fff;
     padding: 20px;
-    width: 300px;
+    width: 420px;
     height: 300px;
+    border-radius: 10px;
 }
-
-.modal-day-tasks .day-tasks div {
-}
-
 
 .list-tasks-day {
     padding-left: 20px;
