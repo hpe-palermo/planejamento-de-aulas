@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import '../assets/ModalAddTasks.css';
 
-function ModalAddTasks({ active, closeModal }) {
+function ModalAddTasks({ isInDiscipline, active, closeModal }) {
 
     // mock data
     const [disciplines, setDisciplines] = useState([
@@ -53,7 +53,7 @@ function ModalAddTasks({ active, closeModal }) {
             date,
             status: 'Em Progresso'
         };
-        console.log('newTask');
+
         console.log([...tasks, newTask])
         setTasks(tasks => [...tasks, newTask]);
     }
@@ -72,22 +72,26 @@ function ModalAddTasks({ active, closeModal }) {
                         <div className="input-section">
                             <label htmlFor="taskDescription">Descrição</label>
                             <input
-                            onChange={(e) => getDescription(e.target.value)}
-                            className="form-control ms-2" type="text" name="taskDescription" placeholder="Descrição" />
+                                onChange={(e) => getDescription(e.target.value)}
+                                className="form-control ms-2" type="text" name="taskDescription" placeholder="Descrição" />
                         </div>
-                        <div className="input-section">
-                            <label htmlFor="">Dsciplina</label>
-                            <select onChange={getOption}>
-                                {disciplines.map(discipline => (
-                                    <option value={discipline.name}>{discipline.name}</option>
-                                ))}
-                            </select>
-                        </div>
+                        {
+                            !isInDiscipline ?
+                                <div className="input-section">
+                                    <label htmlFor="">Dsciplina</label>
+                                    <select onChange={getOption}>
+                                        {disciplines.map(discipline => (
+                                            <option value={discipline.name}>{discipline.name}</option>
+                                        ))}
+                                    </select>
+                                </div> :
+                                <div></div>
+                        }
                         <div className="input-section">
                             <label htmlFor="">Data</label>
                             <input
-                            onChange={(e) => getDate(e.target.value)}
-                            className="form-control ms-2" type="date" name="" id="" />
+                                onChange={(e) => getDate(e.target.value)}
+                                className="form-control ms-2" type="date" name="" id="" />
                         </div>
                         <button className="btn-save" type="submit">Salvar</button>
                     </form>

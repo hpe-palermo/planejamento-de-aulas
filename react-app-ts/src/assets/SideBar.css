@@ -2,6 +2,7 @@
     background-color: #101010;
     width: 350px;
     height: calc(100vh - 72px);
+    z-index: 100;
 }
 
 .icon-x {
@@ -60,7 +61,7 @@
     cursor: pointer;
 }
 
-.list-disciplines li a {
+.list-disciplines a {
     text-decoration: none;
     color: #101010;
 }

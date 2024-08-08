@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import NavBar from "../components/NavBar";
-import SideBar from "../components/SideBar";
-import Calendar from "../components/Calendar";
-import Tasks from "../components/Tasks";
 import ModalAddDiscipline from "../components/ModalAddDiscipline";
-import ModalAddTasks from "../components/ModalAddTasks";
-import '../assets/Home.css'
+import SideBar from "../components/SideBar";
+import ContainerDiscipline from "../components/ContainerDiscipline";
+import '../assets/PageDiscipline.css';
 
-function Home() {
+function PageDiscipline() {
 
     const [sidebarActive, setSidebarActive] = useState(false);
     const [modalAddDisciplineActive, setModalAddDisciplineActive] = useState(false);
@@ -25,8 +23,6 @@ function Home() {
         setModalAddDisciplineActive(!modalAddDisciplineActive);
     };
 
-    const isInDiscipline = true;
-
     return (
         <div>
             <NavBar toggleSideBar={toggleSideBar} />
@@ -34,13 +30,11 @@ function Home() {
                 <ModalAddDiscipline active={modalAddDisciplineActive} closeModal={toggleModalAddDiscipline} />
                 <SideBar active={sidebarActive} toggleSideBar={toggleSideBar} toggleModalAddDiscipline={toggleModalAddDiscipline} />
                 <div className="contents-page">
-                    <Calendar className="content" />
-                    <ModalAddTasks isInDiscipline={isInDiscipline} active={modalAddTasksActive} closeModal={toggleModalAddTasks} />
-                    <Tasks className="content" toggleModalAddTasks={toggleModalAddTasks} />
+                    <ContainerDiscipline className="content" />
                 </div>
-            </div>
+                </div>
         </div>
     );
 }
 
-export default Home;
+export default PageDiscipline;

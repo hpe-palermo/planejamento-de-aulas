@@ -1,0 +1,187 @@
+:root {
+    --primary-color: #101010;
+    --secondary-color: #838383;
+    --tertiary-color: #d2d2d2;
+}
+
+.item-content-tasks {
+    margin-top: 20px;
+}
+
+.list-tasks-header {
+    background-color: var(--tertiary-color);
+    display: flex;
+}
+
+.list-tasks-header div {
+    background-color: var(--primary-color);
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    color: var(--tertiary-color);
+    font-weight: bold;
+}
+
+.tasks-title {
+    padding: 20px;
+    border: 3px solid var(--primary-color);
+}
+
+.tasks-title h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container-filter-add {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-filter-add .filter select {
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+.container-filter-add .btn-add-tasks {
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--primary-color);
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    margin-left: -10px;
+}
+
+.tasks {
+    border: 3px solid var(--primary-color);
+}
+
+.task {
+    background-color: var(--primary-color);
+    display: flex;
+    gap: 3px;
+    border: 1px solid var(--primary-color);
+}
+
+.task div {
+    background-color: var(--secondary-color);
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    color: var(--tertiary-color);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* nao aparece reticencias(por enquanto) */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.status-task-full {
+    display: inline !important;
+}
+
+.status-task-resp {
+    display: none !important;
+}
+
+div[class^='label-color'] {
+    border-radius: 15px;
+}
+
+.label-color-green {
+    background-color: #20d620 !important;
+}
+
+.label-color-red {
+    background-color: #d62020 !important;
+}
+
+.modal-info-back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-info-back.active {
+    display: flex;
+}
+
+.modal-info {
+    background-color: var(--tertiary-color);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: end;
+}
+
+.modal-info-title {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: start;
+}
+
+.input-section {
+    display: flex !important;
+    justify-content: space-between !important;
+    margin: 0;
+}
+
+.input-section label {
+    text-align: start;
+}
+
+.btn-save-edit, .btn-del {
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--primary-color);
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.btn-del {
+    background-color: red;
+    border: 1px solid red;
+}
+
+
+@media (max-width: 768px) {
+    .task div {
+        /* ellipsi (to do) */
+    }
+
+    .icon-status {
+        font-size: 18px;
+    }
+
+    .status-task-full {
+        display: none !important;
+    }
+
+    .status-task-resp {
+        display: inline !important;
+    }
+}

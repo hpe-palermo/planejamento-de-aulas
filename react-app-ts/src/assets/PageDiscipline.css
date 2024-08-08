@@ -1,0 +1,23 @@
+.container {
+    background-color: #dddcdc;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    font-family: 'Mooli';
+}
+
+.content-page {
+    background-color: #838383;
+    display: flex;
+}
+
+.contents-page {
+    height: calc(100vh - 72px);
+    width: 100%;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.contents-page .content {
+    flex: 1;
+}

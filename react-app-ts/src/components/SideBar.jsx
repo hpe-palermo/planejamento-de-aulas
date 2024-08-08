@@ -29,10 +29,9 @@ function SideBar({ active, toggleSideBar, toggleModalAddDiscipline }) {
             </div>
             <ul className="list-disciplines">
                 {disciplines.map((discipline, index) => (
-                    <li key={index}>
-                        <a href="/disciplines/{index}">
-                        {discipline.name}</a>
-                    </li>
+                        <a href="/disciplines/{index}" key={index}>
+                        <li>{discipline.name}</li>
+                        </a>
                 ))}
             </ul>
         </div>

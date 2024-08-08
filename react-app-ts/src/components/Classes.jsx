@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoMdClose, IoMdCheckmark } from "react-icons/io";
 import { FaPlus } from "react-icons/fa";
-import '../assets/Tasks.css';
+import '../assets/Classes.css';
 
 function Tasks({ toggleModalAddTasks }) {
 
@@ -20,10 +20,8 @@ function Tasks({ toggleModalAddTasks }) {
         { name: 'Geografia', creditsHours: 40, daysOfWeek: ['Terça', 'Sexta'], content: ['content 13', 'content 14', 'content 15'] },
     ]);
 
-    const [tasks, setTasks] = useState([
-        { task: "Estudar JavaScript", discipline: "Programação", status: false, date: '2024-08-15' },
-        { task: "Ler um livro", discipline: "Leitura", status: true, date: '2024-08-21' },
-        { task: "Tomar café", discipline: "Saúde", status: false, date: '2024-08-29' },
+    const [objclasses, setObjclasses] = useState([
+        { date: '2024-08-15', name: "Estudar JavaScript", discipline: "Programação", type: 'Prova', status: false },
     ]);
 
     const [tasksFiltered, setTasksFiltered] = useState([]);
@@ -31,12 +29,12 @@ function Tasks({ toggleModalAddTasks }) {
 
     useEffect(() => {
         if (optionFilter == "all") {
-            setTasksFiltered(tasks);
+            setTasksFiltered(objclasses);
         } else {
-            let newTasks = tasks.filter(task => task.discipline === optionFilter);
+            let newTasks = objclasses.filter(objclass => objclass.discipline === optionFilter);
             setTasksFiltered(newTasks);
         }
-    }, [optionFilter, tasks]);
+    }, [optionFilter, objclasses]);
 
     const getOption = (e) => {
         setOptionFilter(e.target.value);
@@ -47,12 +45,12 @@ function Tasks({ toggleModalAddTasks }) {
         if (index !== -1) {
             setIndexTaksModal(index);
             console.log('toggle modal info');
-            console.log(tasks[index]);
+            console.log(classes[index]);
         }
     };
 
     const confirmDelete = (index) => {
-        if (confirm(`Tem certeza que deseja excluir a  "${tasks[index].task}"?`)) {
+        if (confirm(`Tem certeza que deseja excluir a tarefa "${classes[index].task}"?`)) {
             alert("Deleting...");
         }
     };
@@ -60,7 +58,7 @@ function Tasks({ toggleModalAddTasks }) {
     return (
         <div className="item-content-tasks">
             <div className="tasks-title">
-                <h2>Tarefas</h2>
+                <h2>Aulas</h2>
                 <div className="container-filter-add">
                     <div className="filter">
                         <span className="me-2">Disciplinas</span>
@@ -73,16 +71,17 @@ function Tasks({ toggleModalAddTasks }) {
                     </div>
                     <button onClick={toggleModalAddTasks} className="btn-add-tasks">
                         <i className="bi-plus-circle"></i> <span className="d-md-inline d-none">
-                            <FaPlus /> <span>Adicionar Tarefa</span>
+                            <FaPlus /> <span>Adicionar Aula</span>
                         </span>
                     </button>
                 </div>
             </div>
             <div className="list-tasks">
                 <div className="list-tasks-header">
-                    <div>Descrição</div>
-                    <div>Disciplina</div>
                     <div>Data</div>
+                    <div>Nome</div>
+                    <div>Disciplina</div>
+                    <div>Tipo</div>
                     <div>Status</div>
                 </div>
                 <div className={`modal-info-back${modalInfoActive ? ' active' : ''}`}>
@@ -99,15 +98,15 @@ function Tasks({ toggleModalAddTasks }) {
                                     <label htmlFor="taskDescription">Descrição</label>
                                     <input
                                         // onChange={(e) => getDescription(e.target.value)}
-                                        className="form-control ms-2" value={tasks[indexTasksModal].task} type="text" name="taskDescription" placeholder="Descrição" />
+                                        className="form-control ms-2" value={objclasses[indexTasksModal].name} type="text" name="taskDescription" placeholder="Descrição" />
                                 </div>
                                 <div className="input-section">
                                     <label htmlFor="">Dsciplina</label>
                                     <select onChange={getOption}>
                                         {disciplines.map(discipline => (
-                                            discipline.name == tasks[indexTasksModal].discipline
-                                            ? <option value={discipline.name} selected>{discipline.name}</option>
-                                            : <option value={discipline.name}>{discipline.name}</option>
+                                            discipline.name == objclasses[indexTasksModal].discipline
+                                                ? <option value={discipline.name} selected>{discipline.name}</option>
+                                                : <option value={discipline.name}>{discipline.name}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -115,7 +114,7 @@ function Tasks({ toggleModalAddTasks }) {
                                     <label htmlFor="">Data</label>
                                     <input
                                         onChange={(e) => getDate(e.target.value)}
-                                        className="form-control ms-2" type="date" value={tasks[indexTasksModal].date} />
+                                        className="form-control ms-2" type="date" value={objclasses[indexTasksModal].date} />
                                 </div>
                                 <a onClick={() => confirmDelete(indexTasksModal)} className="btn-del" type="submit">Excluir</a>
                                 <button className="btn-save-edit" type="submit">Salvar</button>
@@ -124,11 +123,12 @@ function Tasks({ toggleModalAddTasks }) {
                     </div>
                 </div>
                 <div className="tasks">
-                    {tasksFiltered.map(({ task, discipline, date, status }, index) => (
+                    {tasksFiltered.map(({ date, name, discipline, type, status }, index) => (
                         <div key={index} className="task" onClick={() => toggleOpenModalInfo(index)}>
-                            <div className="name-task">{task}</div>
-                            <div className="discipline-task">{discipline}</div>
                             <div className="date-task">{date}</div>
+                            <div className="name-task">{name}</div>
+                            <div className="discipline-task">{discipline}</div>
+                            <div className="type-task">{discipline}</div>
 
                             <div className="status-task-full">
                                 <div className={`label-color-${status ? 'green' : 'red'}`}>
