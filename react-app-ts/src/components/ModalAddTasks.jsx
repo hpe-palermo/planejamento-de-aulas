@@ -22,7 +22,7 @@ function ModalAddTasks({ isInDiscipline, active, closeModal }) {
     // ----------------------------------------------------------------
 
     const [task, setTask] = useState('');
-    const [discipline, setDiscipline] = useState(disciplines[0]);
+    const [discipline, setDiscipline] = useState(isInDiscipline ? 'Banco de Dados' : disciplines[0]);
     const [date, setDate] = useState('');
 
     const getDescription = (value) => {

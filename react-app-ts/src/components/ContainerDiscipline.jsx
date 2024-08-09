@@ -18,7 +18,7 @@ function ContainerDiscipline() {
     return (
         <div>
             <div className="header">
-                <a className="btn-back">
+                <a href="/home" className="btn-back" style={{textDecoration: 'none'}}>
                     <FaAngleLeft /> <span>Voltar</span>
                 </a>
                 <h1>Banco de Dados</h1>
@@ -27,7 +27,7 @@ function ContainerDiscipline() {
             <div className="main">
                 {/* <Classes /> */}
                 <ModalAddTasks isInDiscipline={isInDiscipline} active={modalAddTasksActive} closeModal={toggleModalAddTasks} />
-                <Tasks className="content" toggleModalAddTasks={toggleModalAddTasks} />
+                <Tasks isInDiscipline={isInDiscipline} className="content" toggleModalAddTasks={toggleModalAddTasks} />
             </div>
         </div>
     );

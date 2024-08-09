@@ -3,7 +3,7 @@ import { IoMdClose, IoMdCheckmark } from "react-icons/io";
 import { FaPlus } from "react-icons/fa";
 import '../assets/Tasks.css';
 
-function Tasks({ toggleModalAddTasks }) {
+function Tasks({ isInDiscipline, toggleModalAddTasks }) {
 
     const [modalTasksActive, setModalTasksActive] = useState(false);
     const [modalInfoActive, setModalInfoActive] = useState(false);
@@ -101,8 +101,8 @@ function Tasks({ toggleModalAddTasks }) {
                                         // onChange={(e) => getDescription(e.target.value)}
                                         className="form-control ms-2" value={tasks[indexTasksModal].task} type="text" name="taskDescription" placeholder="Descrição" />
                                 </div>
-                                <div className="input-section">
-                                    <label htmlFor="">Dsciplina</label>
+                                {!isInDiscipline ? <div className="input-section">
+                                    <label htmlFor="">Disciplina</label>
                                     <select onChange={getOption}>
                                         {disciplines.map(discipline => (
                                             discipline.name == tasks[indexTasksModal].discipline
@@ -111,6 +111,7 @@ function Tasks({ toggleModalAddTasks }) {
                                         ))}
                                     </select>
                                 </div>
+                                : <div></div>}
                                 <div className="input-section">
                                     <label htmlFor="">Data</label>
                                     <input

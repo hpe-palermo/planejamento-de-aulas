@@ -25,7 +25,7 @@ function Home() {
         setModalAddDisciplineActive(!modalAddDisciplineActive);
     };
 
-    const isInDiscipline = true;
+    const isInDiscipline = false;
 
     return (
         <div>
@@ -36,7 +36,7 @@ function Home() {
                 <div className="contents-page">
                     <Calendar className="content" />
                     <ModalAddTasks isInDiscipline={isInDiscipline} active={modalAddTasksActive} closeModal={toggleModalAddTasks} />
-                    <Tasks className="content" toggleModalAddTasks={toggleModalAddTasks} />
+                    <Tasks isInDiscipline={isInDiscipline} className="content" toggleModalAddTasks={toggleModalAddTasks} />
                 </div>
             </div>
         </div>
