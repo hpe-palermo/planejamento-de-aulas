@@ -140,7 +140,7 @@ div[class^='label-color'] {
 .input-section {
     display: flex !important;
     justify-content: space-between !important;
-    margin: 0;
+    margin: 10px 0;
 }
 
 .input-section label {

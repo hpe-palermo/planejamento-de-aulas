@@ -22,19 +22,8 @@ function Tasks({ toggleModalAddTasks }) {
 
     const [objclasses, setObjclasses] = useState([
         { date: '2024-08-15', name: "Estudar JavaScript", discipline: "Programação", type: 'Prova', status: false },
+        { date: '2024-08-22', name: "Estudar React", discipline: "Programação", type: 'Prova', status: false },
     ]);
-
-    const [tasksFiltered, setTasksFiltered] = useState([]);
-    const [optionFilter, setOptionFilter] = useState('all');
-
-    useEffect(() => {
-        if (optionFilter == "all") {
-            setTasksFiltered(objclasses);
-        } else {
-            let newTasks = objclasses.filter(objclass => objclass.discipline === optionFilter);
-            setTasksFiltered(newTasks);
-        }
-    }, [optionFilter, objclasses]);
 
     const getOption = (e) => {
         setOptionFilter(e.target.value);
@@ -60,15 +49,6 @@ function Tasks({ toggleModalAddTasks }) {
             <div className="tasks-title">
                 <h2>Aulas</h2>
                 <div className="container-filter-add">
-                    <div className="filter">
-                        <span className="me-2">Disciplinas</span>
-                        <select onChange={getOption}>
-                            <option value="all">Todas</option>
-                            {disciplines.map((discipline, index) => (
-                                <option key={index} value={discipline.name}>{discipline.name}</option>
-                            ))}
-                        </select>
-                    </div>
                     <button onClick={toggleModalAddTasks} className="btn-add-tasks">
                         <i className="bi-plus-circle"></i> <span className="d-md-inline d-none">
                             <FaPlus /> <span>Adicionar Aula</span>
@@ -123,7 +103,7 @@ function Tasks({ toggleModalAddTasks }) {
                     </div>
                 </div>
                 <div className="tasks">
-                    {tasksFiltered.map(({ date, name, discipline, type, status }, index) => (
+                    {objclasses.map(({ date, name, discipline, type, status }, index) => (
                         <div key={index} className="task" onClick={() => toggleOpenModalInfo(index)}>
                             <div className="date-task">{date}</div>
                             <div className="name-task">{name}</div>

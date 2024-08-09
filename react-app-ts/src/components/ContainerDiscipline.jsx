@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaAngleLeft } from "react-icons/fa";
 import Tasks from "./Tasks";
-// import Classes from "./Classes";
+import Classes from "./Classes";
 import '../assets/Discipline.css';
 import ModalAddTasks from "./ModalAddTasks";
 
@@ -25,7 +25,7 @@ function ContainerDiscipline() {
                 <div></div>
             </div>
             <div className="main">
-                {/* <Classes /> */}
+                <Classes />
                 <ModalAddTasks isInDiscipline={isInDiscipline} active={modalAddTasksActive} closeModal={toggleModalAddTasks} />
                 <Tasks isInDiscipline={isInDiscipline} className="content" toggleModalAddTasks={toggleModalAddTasks} />
             </div>
