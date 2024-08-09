@@ -3,15 +3,11 @@ import { IoMdClose, IoMdCheckmark } from "react-icons/io";
 import { FaPlus } from "react-icons/fa";
 import '../assets/Classes.css';
 
-function Tasks({ toggleModalAddTasks }) {
+function Classes({ toggleModalAddClasses }) {
 
-    const [modalTasksActive, setModalTasksActive] = useState(false);
     const [modalInfoActive, setModalInfoActive] = useState(false);
-    const [indexTasksModal, setIndexTaksModal] = useState(0);
+    const [indexclassesModal, setIndexTaksModal] = useState(0);
 
-    const toggleModalTasks = () => {
-        setModalTasksActive(!modalTasksActive);
-    };
     const [disciplines, setDisciplines] = useState([
         { name: 'Programação', creditsHours: 80, daysOfWeek: ['Terça', 'Quinta'], content: ['content 1', 'content 2', 'content 3'] },
         { name: 'Leitura', creditsHours: 40, daysOfWeek: ['Segunda', 'Quarta'], content: ['content 4', 'content 5', 'content 6'] },
@@ -21,8 +17,8 @@ function Tasks({ toggleModalAddTasks }) {
     ]);
 
     const [objclasses, setObjclasses] = useState([
-        { date: '2024-08-15', name: "Estudar JavaScript", discipline: "Programação", type: 'Prova', status: false },
-        { date: '2024-08-22', name: "Estudar React", discipline: "Programação", type: 'Prova', status: false },
+        { date: '2024-08-15', name: "Aula 01", subject: 'Iniciando com git', discipline: "Programação", type: 'Prova', status: false },
+        { date: '2024-08-22', name: "Aula 02", subject: 'Estudar React', discipline: "Programação", type: 'Prova', status: false },
     ]);
 
     const getOption = (e) => {
@@ -34,7 +30,7 @@ function Tasks({ toggleModalAddTasks }) {
         if (index !== -1) {
             setIndexTaksModal(index);
             console.log('toggle modal info');
-            console.log(classes[index]);
+            console.log(objclasses[index]);
         }
     };
 
@@ -45,21 +41,22 @@ function Tasks({ toggleModalAddTasks }) {
     };
 
     return (
-        <div className="item-content-tasks">
-            <div className="tasks-title">
+        <div className="item-content-classes">
+            <div className="classes-title">
                 <h2>Aulas</h2>
                 <div className="container-filter-add">
-                    <button onClick={toggleModalAddTasks} className="btn-add-tasks">
+                    <button onClick={toggleModalAddClasses} className="btn-add-classes">
                         <i className="bi-plus-circle"></i> <span className="d-md-inline d-none">
                             <FaPlus /> <span>Adicionar Aula</span>
                         </span>
                     </button>
                 </div>
             </div>
-            <div className="list-tasks">
-                <div className="list-tasks-header">
+            <div className="list-classes">
+                <div className="list-classes-header">
                     <div>Data</div>
                     <div>Nome</div>
+                    <div>Tema</div>
                     <div>Disciplina</div>
                     <div>Tipo</div>
                     <div>Status</div>
@@ -78,13 +75,13 @@ function Tasks({ toggleModalAddTasks }) {
                                     <label htmlFor="taskDescription">Descrição</label>
                                     <input
                                         // onChange={(e) => getDescription(e.target.value)}
-                                        className="form-control ms-2" value={objclasses[indexTasksModal].name} type="text" name="taskDescription" placeholder="Descrição" />
+                                        className="form-control ms-2" value={objclasses[indexclassesModal].name} type="text" name="taskDescription" placeholder="Descrição" />
                                 </div>
                                 <div className="input-section">
-                                    <label htmlFor="">Dsciplina</label>
+                                    <label htmlFor="">Disciplina</label>
                                     <select onChange={getOption}>
                                         {disciplines.map(discipline => (
-                                            discipline.name == objclasses[indexTasksModal].discipline
+                                            discipline.name == objclasses[indexclassesModal].discipline
                                                 ? <option value={discipline.name} selected>{discipline.name}</option>
                                                 : <option value={discipline.name}>{discipline.name}</option>
                                         ))}
@@ -94,21 +91,23 @@ function Tasks({ toggleModalAddTasks }) {
                                     <label htmlFor="">Data</label>
                                     <input
                                         onChange={(e) => getDate(e.target.value)}
-                                        className="form-control ms-2" type="date" value={objclasses[indexTasksModal].date} />
+                                        className="form-control ms-2" type="date" value={objclasses[indexclassesModal].date} />
                                 </div>
-                                <a onClick={() => confirmDelete(indexTasksModal)} className="btn-del" type="submit">Excluir</a>
+                                <a onClick={() => confirmDelete(indexclassesModal)} className="btn-del" type="submit">Excluir</a>
                                 <button className="btn-save-edit" type="submit">Salvar</button>
                             </form>
                         </div>
                     </div>
                 </div>
-                <div className="tasks">
-                    {objclasses.map(({ date, name, discipline, type, status }, index) => (
+                <div className="classes">
+                    {objclasses.map(({ date, name, subject, discipline, type, status }, index) => (
+                        // { date: '2024-08-15', name: "Aula 01", subject: 'Iniciando com git', discipline: "Programação", type: 'Prova', status: false },
                         <div key={index} className="task" onClick={() => toggleOpenModalInfo(index)}>
                             <div className="date-task">{date}</div>
                             <div className="name-task">{name}</div>
+                            <div className="subject-task">{subject}</div>
                             <div className="discipline-task">{discipline}</div>
-                            <div className="type-task">{discipline}</div>
+                            <div className="type-task">{type}</div>
 
                             <div className="status-task-full">
                                 <div className={`label-color-${status ? 'green' : 'red'}`}>
@@ -129,4 +128,4 @@ function Tasks({ toggleModalAddTasks }) {
     );
 }
 
-export default Tasks;
+export default Classes;

@@ -4,15 +4,21 @@ import Tasks from "./Tasks";
 import Classes from "./Classes";
 import '../assets/Discipline.css';
 import ModalAddTasks from "./ModalAddTasks";
+import ModalAddClasses from "./ModalAddClasses";
 
 function ContainerDiscipline() {
 
     const [modalAddTasksActive, setModalAddTasksActive] = useState(false);
+    const [modalAddClassesActive, setModalAddClassesActive] = useState(false);
 
     const toggleModalAddTasks = () => {
         setModalAddTasksActive(!modalAddTasksActive);
     };
 
+    const toggleModalAddClasses = () => {
+        setModalAddClassesActive(!modalAddClassesActive);
+    };
+    
     const isInDiscipline = true;
 
     return (
@@ -25,7 +31,8 @@ function ContainerDiscipline() {
                 <div></div>
             </div>
             <div className="main">
-                <Classes />
+                <ModalAddClasses active={modalAddClassesActive} closeModal={toggleModalAddClasses} />
+                <Classes toggleModalAddClasses={toggleModalAddClasses} />
                 <ModalAddTasks isInDiscipline={isInDiscipline} active={modalAddTasksActive} closeModal={toggleModalAddTasks} />
                 <Tasks isInDiscipline={isInDiscipline} className="content" toggleModalAddTasks={toggleModalAddTasks} />
             </div>

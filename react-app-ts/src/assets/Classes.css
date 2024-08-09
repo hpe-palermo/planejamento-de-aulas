@@ -4,16 +4,16 @@
     --tertiary-color: #d2d2d2;
 }
 
-.item-content-tasks {
+.item-content-classes {
     margin-top: 20px;
 }
 
-.list-tasks-header {
+.list-classes-header {
     background-color: var(--tertiary-color);
     display: flex;
 }
 
-.list-tasks-header div {
+.list-classes-header div {
     background-color: var(--primary-color);
     flex: 1;
     text-align: center;
@@ -22,12 +22,12 @@
     font-weight: bold;
 }
 
-.tasks-title {
+.classes-title {
     padding: 20px;
     border: 3px solid var(--primary-color);
 }
 
-.tasks-title h2 {
+.classes-title h2 {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -46,7 +46,7 @@
     border-radius: 10px;
 }
 
-.container-filter-add .btn-add-tasks {
+.container-filter-add .btn-add-classes {
     background-color: var(--primary-color);
     color: var(--tertiary-color);
     padding: 10px;
@@ -60,7 +60,7 @@
     margin-left: -10px;
 }
 
-.tasks {
+.classes {
     border: 3px solid var(--primary-color);
 }
 
