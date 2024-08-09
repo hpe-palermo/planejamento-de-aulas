@@ -4,6 +4,7 @@ import Register from './Pages/Register';
 import Home from './Pages/Home';  
 import PageDiscipline from './Pages/PageDiscipline';
 import PageNotFound from './Pages/PageNotFound';
+// import CreatePlanClass
 import './App.css'
 
 function App() {

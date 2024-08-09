@@ -6,14 +6,20 @@ function ModalAddClasses({ active, closeModal }) {
 
     const [date, setDate] = useState('');
     const [name, setName] = useState('');
-    const [subject, setNameSubject] = useState('');
+    const [subject, setSubject] = useState('');
     const [discipline, setDiscipline] = useState('Banco de Dados');
     const [typeClass, setTypeClass] = useState('');
 
-    const [objclasses, setClasses] = useState('');
-
     const getNameClassInput = (value) => {
-        setClasses(value);
+        setName(value);
+    };
+
+    const getSubjectClassInput = (value) => {
+        setSubject(value);
+    };
+    
+    const getTypeClassInput = (value) => {
+        setTypeClass(value);
     };
 
     const getDate = (value) => {
@@ -22,12 +28,15 @@ function ModalAddClasses({ active, closeModal }) {
 
     const submitForm = (e) => {
         e.preventDefault();
-        console.log('Class Description:', objclasses);
+        console.log('Class Description:', name);
         console.log('Discipline:', discipline);
         console.log('Date:', date);
+        console.log('Tema:', subject);
+        console.log('Tipo:', typeClass);
         closeModal();
         setClasses('');
-        setDiscipline('');
+        setTypeClass('');
+        setSubject('');
         setDate('');
 
         let newClass = {
@@ -61,12 +70,16 @@ function ModalAddClasses({ active, closeModal }) {
                                 className="form-control ms-2" type="text" name="nameClass" placeholder="Nome" />
                         </div>
                         <div className="input-section">
-                            {/* <label htmlFor="">Disciplina</label>
-                            <select onChange={getOption}>
-                                {disciplines.map(discipline => (
-                                    <option value={discipline.name}>{discipline.name}</option>
-                                ))}
-                            </select> */}
+                            <label htmlFor="nameClass">Tema</label>
+                            <input
+                                onChange={(e) => getSubjectClassInput(e.target.value)}
+                                className="form-control ms-2" type="text" name="nameClass" placeholder="Tema" />
+                        </div>
+                        <div className="input-section">
+                            <label htmlFor="nameClass">Tipo</label>
+                            <input
+                                onChange={(e) => getTypeClassInput(e.target.value)}
+                                className="form-control ms-2" type="text" name="nameClass" placeholder="Tipo" />
                         </div>
                         <div className="input-section">
                             <label htmlFor="">Data</label>

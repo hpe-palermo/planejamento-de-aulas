@@ -101,7 +101,6 @@ function Classes({ toggleModalAddClasses }) {
                 </div>
                 <div className="classes">
                     {objclasses.map(({ date, name, subject, discipline, type, status }, index) => (
-                        // { date: '2024-08-15', name: "Aula 01", subject: 'Iniciando com git', discipline: "Programação", type: 'Prova', status: false },
                         <div key={index} className="task" onClick={() => toggleOpenModalInfo(index)}>
                             <div className="date-task">{date}</div>
                             <div className="name-task">{name}</div>
