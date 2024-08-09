@@ -4,7 +4,7 @@ import Register from './Pages/Register';
 import Home from './Pages/Home';  
 import PageDiscipline from './Pages/PageDiscipline';
 import PageNotFound from './Pages/PageNotFound';
-// import CreatePlanClass
+import PageInfoClass from './Pages/PageInfoClass';
 import './App.css'
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/disciplines/:id" element={<PageDiscipline />}></Route>
+        <Route path="/class/:id" element={<PageInfoClass />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
     </BrowserRouter>

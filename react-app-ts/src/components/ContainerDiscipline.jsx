@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { FaAngleLeft } from "react-icons/fa";
 import Tasks from "./Tasks";
 import Classes from "./Classes";
-import '../assets/Discipline.css';
 import ModalAddTasks from "./ModalAddTasks";
 import ModalAddClasses from "./ModalAddClasses";
+import '../assets/Discipline.css';
 
 function ContainerDiscipline() {
 

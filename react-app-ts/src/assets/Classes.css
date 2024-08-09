@@ -167,6 +167,10 @@ div[class^='label-color'] {
     border: 1px solid red;
 }
 
+.context-edit {
+    background-color: #fff;
+}
+
 
 @media (max-width: 768px) {
     .task div {

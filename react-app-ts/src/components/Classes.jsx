@@ -21,22 +21,12 @@ function Classes({ toggleModalAddClasses }) {
         { date: '2024-08-22', name: "Aula 02", subject: 'Estudar React', discipline: "Programação", type: 'Prova', status: false },
     ]);
 
-    const getOption = (e) => {
-        setOptionFilter(e.target.value);
-    };
-
     const toggleOpenModalInfo = (index) => {
         setModalInfoActive(!modalInfoActive);
         if (index !== -1) {
             setIndexTaksModal(index);
             console.log('toggle modal info');
             console.log(objclasses[index]);
-        }
-    };
-
-    const confirmDelete = (index) => {
-        if (confirm(`Tem certeza que deseja excluir a tarefa "${classes[index].task}"?`)) {
-            alert("Deleting...");
         }
     };
 
@@ -60,44 +50,6 @@ function Classes({ toggleModalAddClasses }) {
                     <div>Disciplina</div>
                     <div>Tipo</div>
                     <div>Status</div>
-                </div>
-                <div className={`modal-info-back${modalInfoActive ? ' active' : ''}`}>
-                    <div className="modal-info">
-                        <div className="close-modal-info" onClick={() => toggleOpenModalInfo(-1)}>
-                            <IoMdClose size={25} className="icon-close" />
-                        </div>
-                        <div className="modal-info-title">
-                            <h1>Editar</h1>
-                        </div>
-                        <div className="modal-info-content">
-                            <form>
-                                <div className="input-section">
-                                    <label htmlFor="taskDescription">Descrição</label>
-                                    <input
-                                        // onChange={(e) => getDescription(e.target.value)}
-                                        className="form-control ms-2" value={objclasses[indexclassesModal].name} type="text" name="taskDescription" placeholder="Descrição" />
-                                </div>
-                                <div className="input-section">
-                                    <label htmlFor="">Disciplina</label>
-                                    <select onChange={getOption}>
-                                        {disciplines.map(discipline => (
-                                            discipline.name == objclasses[indexclassesModal].discipline
-                                                ? <option value={discipline.name} selected>{discipline.name}</option>
-                                                : <option value={discipline.name}>{discipline.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div className="input-section">
-                                    <label htmlFor="">Data</label>
-                                    <input
-                                        onChange={(e) => getDate(e.target.value)}
-                                        className="form-control ms-2" type="date" value={objclasses[indexclassesModal].date} />
-                                </div>
-                                <a onClick={() => confirmDelete(indexclassesModal)} className="btn-del" type="submit">Excluir</a>
-                                <button className="btn-save-edit" type="submit">Salvar</button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
                 <div className="classes">
                     {objclasses.map(({ date, name, subject, discipline, type, status }, index) => (

@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .btn-back {
+    border: none;
+    outline: none;
+    background-color: #101010;
+    color: #d2d2d2;
+    padding: 15px;
+    width: 100px;
+    border-radius: 20px;
+}
+
+.main {
+    margin-top: 20px;
+}
